@@ -40,6 +40,11 @@ MainApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "html/main_pm.html",
             controller: 'PmViewController'
         })
+        .state('pms.ac', {
+            url: "/pm/cr/:crId",
+            templateUrl: "html/ac_details.html",
+            controller: 'AcViewController'
+        })
         .state('pms.cr', {
             url: "/cr/:crId",
             templateUrl: "html/cr_details.html",

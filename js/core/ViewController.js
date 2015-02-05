@@ -18,6 +18,11 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams) {
         $state.transitionTo('pms.task', $stateParams, {location: true, inherit: true, relative: $state.$current, notify: true});
     };
 
+    $scope.goToAc = function(cr) {
+        $stateParams['crId'] = cr.id;
+        $state.transitionTo('pms.ac', $stateParams, {location: true, inherit: true, relative: $state.$current, notify: true});
+    };
+
     $scope.getAssignedUsers = function(assignedTo) {
         if (!assignedTo) return "";
         return assignedTo.join(", ");

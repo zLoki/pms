@@ -1,0 +1,46 @@
+<style>
+    .value {
+        color: #000000;
+        clear: right;
+        display: block;
+        position: relative;
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: -3px;
+    }
+    .underline {
+        color: #7F7F7F;
+        font-size: 9px;
+        display: inline-block;
+        font-weight: bold;
+        text-align: left;
+        padding-right: 10px;
+    }
+</style>
+<div>
+    <div class="alert alert-info">
+        <div class="row">
+            <div class="col-lg-1">
+                <div class="value">{{ changeRequest.id || '-' }}</div>
+                <div class="highlight underline">ID</div>
+            </div>
+            <div class="col-lg-4">
+                <div class="value">{{ changeRequest.name || '-' }}</div>
+                <div class="highlight underline">Name</div>
+            </div>
+            <div class="col-lg-2">
+                <div class="value">{{ changeRequest.status.name || '-' }}</div>
+                <div class="highlight underline">Status</div>
+            </div>
+            <div class="col-lg-2">
+                <div class="value">{{ 42 }}</div>
+                <div class="highlight underline">Estimation value</div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+
+    </div>
+
+</div>

@@ -34,7 +34,7 @@ var Constants = {
     Task: {
         NONAME: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_11: {id: "569.1", name: "GUI Design and Logic", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_12: {id: "569.2", name: "Adjust funtionality to customize CL items and AFs per CL (not WP)", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
+        Task_12: {id: "569.2", name: "Adjust functionality to customize CL items and AFs per CL (not WP)", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_13: {id: "569.3", name: "Adjust functionality to create single CL and proper phases", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_14: {id: "569.4", name: "Mass Update Functionality", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_15: {id: "569.5", name: "Checklist dependencies on administration page", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
@@ -60,21 +60,16 @@ var Constants = {
     },
 
     Item: {
-        Item_11: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_12: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_13: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_14: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_15: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_16: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_17: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_21: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_22: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_23: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_24: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_31: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_32: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_33: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_34: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""},
-        Item_35: {id: "", name: "", description: "", min: "", max: "", avg: "", weighted_avg: ""}
+        Item_11: {id: "", name: "Create migration to create folders for opportunity phases", description: "", min: "4", max: "8", likely: "8", weighted_avg: ""},
+        Item_12: {id: "", name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: "8", max: "24", likely: "16", weighted_avg: ""},
+        Item_13: {id: "", name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: "4", max: "6", likely: "5", weighted_avg: ""},
+        Item_14: {id: "", name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: "4", max: "6", likely: "5", weighted_avg: ""},
+        Item_15: {id: "", name: "Check File Manager to work with new Opportunity folders structure", description: "", min: "2", max: "4", likely: "4", weighted_avg: ""},
+        Item_16: {id: "", name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: "3", max: "6", likely: "6", weighted_avg: ""},
+        Item_17: {id: "", name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: "6", max: "12", likely: "8", weighted_avg: ""},
+        Item_21: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""},
+        Item_22: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""},
+        Item_23: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""},
+        Item_24: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""}
     }
 };

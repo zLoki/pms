@@ -98,9 +98,11 @@ var Constants = {
         IN_PROGRESS: {id: 3, name: "In Progress"},
         ON_HOLD: {id: 4, name: "On Hold"},
         COMPLETE: {id: 5, name: "Complete"},
-
+        list: function() {
+            return [this.NEW, this.IN_ANALYSIS, this.IN_PROGRESS, this.ON_HOLD, this.COMPLETE];
+        },
         getStatus: function(id) {
-            var list = [this.NEW, this.IN_ANALYSIS, this.IN_PROGRESS, this.ON_HOLD, this.COMPLETE];
+            var list = this.list();
             for (var i = 0; i < list.length; i++) {
                 var obj = list[i];
                 if (obj.id === id) return obj;
@@ -172,7 +174,6 @@ Constants.CR = {
     CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.getChecklistBuilderList()},
     CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: [Constants.Task.Task_27]},
     PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: [Constants.Task.Task_28]},
-
     list: function() {
         return [this.MULTIRADIO, this.JAPAN_PLACEHOLDER, this.CHECKLIST_BUILDER, this.CHECKLIST_ITEM_ATTACHMENTS, this.PLANNING_TOOL];
     },

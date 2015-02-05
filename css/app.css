@@ -33,10 +33,29 @@
 .bread-crumb-line-height {
     line-height: 21px;
 }
+
 .bread-crumb-link {
-    color: #4271c6;
+    color: #5096d9;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.fieldset-section {
+    padding: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+}
+
+.group-legend {
+    width: auto;
+    font-size: 13px;
+    border-bottom: none;
+    margin-left: 10px;
+    margin-bottom: 0;
+    color: #2B669A;
 }
 
 .label-default {

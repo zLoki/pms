@@ -51,14 +51,6 @@ var Constants = {
         ChecklistBuilderList: [this.Task_21, this.Task_22, this.Task_23,this.Task_24, this.Task_25]
     },
 
-    CR: {
-        MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.MultiRadioList},
-        JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5},
-        CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.ChecklistBuilderList},
-        CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4},
-        PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3}
-    },
-
     Status: {
         NEW: {id: 1, name: "New"},
         IN_ANALYSIS: {id: 2, name: "In Analysis"},
@@ -115,4 +107,12 @@ var Constants = {
             {date: "26/11/2014", trackedBy: "VladimirSh", actValue: 5.9, estValue: 6}
         ]
     }
+};
+
+Constants.CR = {
+    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.MultiRadioList},
+    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5},
+    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.ChecklistBuilderList},
+    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4},
+    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3}
 };

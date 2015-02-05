@@ -10,7 +10,7 @@
                     <th>...</th>
                 </tr>
                 <tr ng-repeat="task in tasks">
-                    <td>{{ task.name }}</td>
+                    <td ng-click="goToTask(task)">{{ task.name }}</td>
                     <td ng-class="{'label-new': task.status == 1,
                                     'label-in-analysis': task.status == 2,
                                     'label-in-progress': task.status == 3,

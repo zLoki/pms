@@ -16,3 +16,75 @@
 .label-in-progress {
     background-color: #d9cd0e;
 }
+
+.truncate-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 0;
+    min-width: 100%;
+    display: block;
+}
+
+/*flat buttons*/
+.btn-flat {
+    background: #FFFFFF;
+    border-color: #CCCCCC;
+}
+.btn-flat[disabled] {
+    opacity: 0.4;
+}
+.btn-flat-success {
+    color: #3C763D;
+}
+.btn-flat-success:hover,
+.btn-flat-success:focus,
+.btn-flat-success:active {
+    color: #3C763D;
+    background-color: #DFF0D8;
+}
+.btn-flat-warning {
+    color: #CDA402;
+}
+.btn-flat-warning:hover,
+.btn-flat-warning:focus,
+.btn-flat-warning:active {
+    color: #CDA402;
+    background-color: #FCF8E3;
+}
+.btn-flat-danger {
+    color: #A94442;
+}
+.btn-flat-danger:hover,
+.btn-flat-danger:focus,
+.btn-flat-danger:active {
+    color: #A94442;
+    background-color: #F2DEDE;
+}
+.btn-flat-primary {
+    color: #2B669A;
+}
+.btn-flat-primary:hover,
+.btn-flat-primary:focus,
+.btn-flat-primary:active {
+    color: #2B669A;
+    background-color: #EBF5FF;
+}
+.btn-flat-info {
+    color: #5BC0DE;
+}
+.btn-flat-info:hover,
+.btn-flat-info:focus,
+.btn-flat-info:active {
+    color: #5BC0DE;
+    background-color: #E6F7FC;
+}
+.btn-flat-default {
+    color: #333333;
+}
+.btn-flat-default:hover,
+.btn-flat-default:focus,
+.btn-flat-default:active {
+    color: #333333;
+    background-color: #E3E3E3;
+}

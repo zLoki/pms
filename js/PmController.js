@@ -1,4 +1,4 @@
-MainApp.controller("PmController", function($controller, $scope) {
+MainApp.controller("PmViewController", function($controller, $scope) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.filters = [];

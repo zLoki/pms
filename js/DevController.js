@@ -1,4 +1,4 @@
-MainApp.controller("DevController", function($controller, $scope) {
+MainApp.controller("DevViewController", function($controller, $scope) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.filters = [];

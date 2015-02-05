@@ -1,0 +1,26 @@
+<div>
+    <div>
+
+    </div>
+    <div>
+        <div ng-repeat="checklist in checklists" class="panel">
+            <div class="page-header">{{ checklist.name }}</div>
+            <div class="panel-body">
+                <div ng-repeat="item in checklist.items" class="row">
+                    <div class="col-lg-1" style="width: 20px;">
+                        <button ng-click="updateItemProgress(item)" class="btn btn-xs btn-flat btn-flat-success" style="border: none;">
+                            <span ng-class="{'glyphicon-check green': item.isCompleted, 'glyphicon-unchecked': !item.isCompleted}" class="glyphicon"></span>
+                        </button>
+                    </div>
+                    <div class="col-lg-5">
+                        {{ item.name }}
+                    </div>
+                    <div class="col-lg-5">
+                        {{ item.name }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

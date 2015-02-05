@@ -29,11 +29,16 @@ MainApp.config(function($stateProvider, $urlRouterProvider) {
         .state('pms.dev', {
             url: "/dev",
             templateUrl: "html/main_dev.html",
-            controller: 'DevController'
+            controller: 'DevViewController'
         })
         .state('pms.pm', {
             url: "/pm",
             templateUrl: "html/main_pm.html",
-            controller: 'PmController'
+            controller: 'PmViewController'
+        })
+        .state('pms.task', {
+            url: "/task",
+            templateUrl: "html/task.html",
+            controller: 'TaskViewController'
         });
 });

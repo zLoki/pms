@@ -34,6 +34,15 @@
     display: block;
 }
 
+.footer-container {
+    width: 100%;
+    background-image: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
+}
+
 /*flat buttons*/
 .btn-flat {
     background: #FFFFFF;

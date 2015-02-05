@@ -1,4 +1,12 @@
 var Constants = {
+    User: {
+        alexanderShe: "AlexanderShe",
+        dmitryS: "DmitryS",
+        vladimirSh: "VladimirSh",
+        list: function() {
+            return [this.alexanderShe, this.dmitryS, this.vladimirSh];
+        }
+    },
     Project: {
         VENUS: {id: 1, name: "Venus"},
         NEPTUNE: {id: 2, name: "Neptune"},
@@ -24,13 +32,13 @@ var Constants = {
     },
 
     Item: {
-        Item_11: {id: 11, name: "Create migration to create folders for opportunity phases", description: "", min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
-        Item_12: {id: 12, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
-        Item_13: {id: 13, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
-        Item_14: {id: 14, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
-        Item_15: {id: 15, name: "Check File Manager to work with new Opportunity folders structure", description: "", min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: "DmitryS"},
-        Item_16: {id: 16, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: "DmitryS"},
-        Item_17: {id: 17, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: "VladimirSh"},
+        Item_11: {id: 11, name: "Create migration to create folders for opportunity phases", description: "", min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
+        Item_12: {id: 12, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
+        Item_13: {id: 13, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
+        Item_14: {id: 14, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
+        Item_15: {id: 15, name: "Check File Manager to work with new Opportunity folders structure", description: "", min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS"]},
+        Item_16: {id: 16, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS", "VladimirSh"]},
+        Item_17: {id: 17, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["VladimirSh"]},
 
         ClItemAttachmentsTaskItemsList: [this.Item_11, this.Item_12, this.Item_13, this.Item_14, this.Item_15, this.Item_16, this.Item_17]
     },
@@ -52,6 +60,13 @@ var Constants = {
         },
         getChecklistBuilderList: function () {
             return [this.Task_21, this.Task_22, this.Task_23, this.Task_24, this.Task_25];
+        },
+        getTaskById: function(taskId) {
+            for (var item in this) {
+                if (!this.hasOwnProperty(item)) continue;
+                if (this[item]['id'] === taskId) return this[item];
+            }
+            return null;
         }
     },
 
@@ -115,10 +130,10 @@ var Constants = {
 
 Constants.CR = {
     MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.getMultiRadioList()},
-    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5, tasks: null},
+    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5, tasks: []},
     CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.getChecklistBuilderList()},
-    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: null},
-    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: null},
+    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: []},
+    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: []},
 
     list: function() {
         return [this.MULTIRADIO, this.JAPAN_PLACEHOLDER, this.CHECKLIST_BUILDER, this.CHECKLIST_ITEM_ATTACHMENTS, this.PLANNING_TOOL];

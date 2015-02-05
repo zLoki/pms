@@ -24,13 +24,13 @@ var Constants = {
     },
 
     Item: {
-        Item_11: {id: 11, name: "Create migration to create folders for opportunity phases", description: "", min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ""},
-        Item_12: {id: 12, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: ""},
-        Item_13: {id: 13, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ""},
-        Item_14: {id: 14, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ""},
-        Item_15: {id: 15, name: "Check File Manager to work with new Opportunity folders structure", description: "", min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: ""},
-        Item_16: {id: 16, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: ""},
-        Item_17: {id: 17, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ""},
+        Item_11: {id: 11, name: "Create migration to create folders for opportunity phases", description: "", min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
+        Item_12: {id: 12, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
+        Item_13: {id: 13, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
+        Item_14: {id: 14, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: "AlexanderShe"},
+        Item_15: {id: 15, name: "Check File Manager to work with new Opportunity folders structure", description: "", min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: "DmitryS"},
+        Item_16: {id: 16, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: "DmitryS"},
+        Item_17: {id: 17, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: "VladimirSh"},
 
         ClItemAttachmentsTaskItemsList: [this.Item_11, this.Item_12, this.Item_13, this.Item_14, this.Item_15, this.Item_16, this.Item_17]
     },

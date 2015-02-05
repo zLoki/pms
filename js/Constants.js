@@ -128,15 +128,29 @@ var Constants = {
     },
 
     AcceptanceCriteria: {
-        AC_1: {id: 1, name: "Once new opportunity is created, root folders for all phases should be created automatically.", status: 2, completedBy: "IrinaG"},
-        AC_2: {id: 2, name: "The names of folders should be the same as phases have.", status: 2, completedBy: "IrinaG"},
-        AC_3: {id: 3, name: "User should be able to upload files with predefined extensions into automatically created phases folders.", status: 2, completedBy: "IrinaG"},
-        AC_4: {id: 4, name: "Once user uploads file into CL item folder within File Manager, the file appears as CL attachment on checklist as well.", status: 2, completedBy: "IrinaG"},
-        AC_5: {id: 5, name: "If file uploaded as attachment of certain CL item gets locked within File Manager, it should not be possible to delete it within checklist. Thus delete icon on checklist will be hidden until file is unlocked.", status: 2, completedBy: "IrinaG"},
-        AC_6: {id: 6, name: "Files uploaded as attachments of CL items should be movable between CL items folders of all phases until CL items are completed.", status: 3, completedBy: "", failedBy: "IrinaG"},
-        AC_7: {id: 7, name: "If file is moved from one CL folder to another, it should be re-attached from intial CL item to another one within checklist as well. ", status: 1, completedBy: ""},
-        AC_8: {id: 8, name: "If user moves file from CL item folder to some other folder(phase, root etc), file should be de-attached from respective CL item.", status: 1, completedBy: ""},
-        AC_9: {id: 9, name: "Once CL item is completed it should not be possible to move attachments of other CL items to its folder. It should not be possible to moved files of completed CL item into some other folders.", status: 1, completedBy: ""}
+        AC_1: {id: 1, name: "Once new opportunity is created, root folders for all phases should be created automatically.", status: 2, updatedBy: "IrinaG"},
+        AC_2: {id: 2, name: "The names of folders should be the same as phases have.", status: 2, updatedBy: "IrinaG"},
+        AC_3: {id: 3, name: "User should be able to upload files with predefined extensions into automatically created phases folders.", status: 2, updatedBy: "IrinaG"},
+        AC_4: {id: 4, name: "Once user uploads file into CL item folder within File Manager, the file appears as CL attachment on checklist as well.", status: 2, updatedBy: "IrinaG"},
+        AC_5: {id: 5, name: "If file uploaded as attachment of certain CL item gets locked within File Manager, it should not be possible to delete it within checklist. Thus delete icon on checklist will be hidden until file is unlocked.", status: 3, updatedBy: "IrinaG"},
+        AC_6: {id: 6, name: "Files uploaded as attachments of CL items should be movable between CL items folders of all phases until CL items are completed.", status: 3, updatedBy: "IrinaG"},
+        AC_7: {id: 7, name: "If file is moved from one CL folder to another, it should be re-attached from intial CL item to another one within checklist as well. ", status: 1, updatedBy: ""},
+        AC_8: {id: 8, name: "If user moves file from CL item folder to some other folder(phase, root etc), file should be de-attached from respective CL item.", status: 1, updatedBy: ""},
+        AC_9: {id: 9, name: "Once CL item is completed it should not be possible to move attachments of other CL items to its folder. It should not be possible to moved files of completed CL item into some other folders.", status: 1, updatedBy: ""},
+
+        list: function() {
+            var array = [];
+            array.push(this.AC_1);
+            array.push(this.AC_2);
+            array.push(this.AC_3);
+            array.push(this.AC_4);
+            array.push(this.AC_5);
+            array.push(this.AC_6);
+            array.push(this.AC_7);
+            array.push(this.AC_8);
+            array.push(this.AC_9);
+            return array;
+        }
     },
 
     ACStatus: {

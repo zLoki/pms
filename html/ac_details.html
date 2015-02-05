@@ -16,8 +16,22 @@
         text-align: left;
         padding-right: 10px;
     }
+    .fieldset-section {
+        display: inline-block;
+        margin-top: 10px;
+        border: 1px solid #dddddd;
+        background-color: #F9F9F9;
+    }
+    .group-legend {
+        width: auto;
+        font-size: 13px;
+        border-bottom: none;
+        margin-left: 10px;
+        margin-bottom: 0;
+        color: #2B669A;
+    }
 </style>
-<div>
+<div ng-init="init()" ng-controller="AcViewController">
     <div class="alert alert-info">
         <div class="row">
             <div class="col-lg-1">
@@ -40,7 +54,45 @@
     </div>
 
     <div>
-
+        <div style="width: 100%;">
+            <fieldset class="fieldset-section" style="width: inherit;">
+                <legend class="group-legend">Description</legend>
+                <div style="margin: 10px;">{{ changeRequest.description || "Initial description wasn't specified yet." }}</div>
+                <div ng-if="!changeRequest.description">
+                    <textarea style="width: 98%; margin-left: 10px;"></textarea>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;">Save</button>
+                </div>
+            </fieldset>
+        </div>
+        <div style="width: 100%;">
+            <fieldset class="fieldset-section" style="width: inherit; background-color: #FFF;">
+                <legend class="group-legend">Acceptance Criteria</legend>
+                <div class="panel-group" style="margin-top: 10px;" ng-model="panels.activePanel" bs-collapse>
+                    <div class="panel panel-default" ng-class="{'panel-success': ac.status.id == 2, 'panel-danger': ac.status.id == 3}" style="width: 98%; margin-left: 10px;" ng-repeat="ac in acList">
+                        <div class="panel-heading" style="background-image: none;">
+                            <div style="display: inline-block; float: left;">
+                                <button class="btn btn-xs btn-flat btn-flat-primary"><span class="glyphicon glyphicon-cog"></span></button>
+                            </div>
+                            <div style="display: inline-block; width: 95%; margin-left: 10px;">
+                                <span class="panel-title">{{ ac.name }}</span>
+                            </div>
+                            <div style="color: #D99D9C; text-align: center;" bs-collapse-toggle>
+                                <span ng-if="ac.status.id == 3" class="glyphicon glyphicon-chevron-down" style="cursor: pointer;"></span>
+                            </div>
+                        </div>
+                        <div class="panel-collapse" bs-collapse-target>
+                            <div class="panel-body">
+                                {{ ac.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <textarea style="width: 98%; margin-left: 10px;"></textarea>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;">Add Criteria</button>
+                </div>
+            </fieldset>
+        </div>
     </div>
 
 </div>

@@ -40,8 +40,13 @@ MainApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "html/main_pm.html",
             controller: 'PmViewController'
         })
+        .state('pms.cr', {
+            url: "/cr/:crId",
+            templateUrl: "html/cr_details.html",
+            controller: 'CrViewController'
+        })
         .state('pms.task', {
-            url: "/task/:taskId",
+            url: "/cr/:crId/task/:taskId",
             templateUrl: "html/task.html",
             controller: 'TaskViewController'
         });

@@ -3,6 +3,7 @@ var Constants = {
         alexanderShe: "AlexanderShe",
         dmitryS: "DmitryS",
         vladimirSh: "VladimirSh",
+        irinaG: "IrinaG",
         list: function() {
             return [this.alexanderShe, this.dmitryS, this.vladimirSh];
         }
@@ -45,7 +46,8 @@ var Constants = {
             var list = [];
             for (var item in this) {
                 if (!this.hasOwnProperty(item)) continue;
-                if (this[item]['taskId'] === taskId) list.push(this[item]);
+                var taskItem = this[item];
+                if (taskItem['taskId'] === taskId) list.push(taskItem);
             }
             return list;
         }
@@ -75,6 +77,15 @@ var Constants = {
                 if (this[item]['id'] === taskId) return this[item];
             }
             return null;
+        },
+        getTasksByCrId: function(crId) {
+            var list = [];
+            for (var item in this) {
+                if (!this.hasOwnProperty(item)) continue;
+                var task = this[item];
+                if (parseInt(task['id']) === crId) list.push(task);
+            }
+            return list;
         }
     },
 
@@ -101,7 +112,7 @@ var Constants = {
         AC_3: {id: 3, name: "User should be able to upload files with predefined extensions into automatically created phases folders.", status: 2, completedBy: "IrinaG"},
         AC_4: {id: 4, name: "Once user uploads file into CL item folder within File Manager, the file appears as CL attachment on checklist as well.", status: 2, completedBy: "IrinaG"},
         AC_5: {id: 5, name: "If file uploaded as attachment of certain CL item gets locked within File Manager, it should not be possible to delete it within checklist. Thus delete icon on checklist will be hidden until file is unlocked.", status: 2, completedBy: "IrinaG"},
-        AC_6: {id: 6, name: "Files uploaded as attachments of CL items should be movable between CL items folders of all phases until CL items are completed.", status: 3, completedBy: ""},
+        AC_6: {id: 6, name: "Files uploaded as attachments of CL items should be movable between CL items folders of all phases until CL items are completed.", status: 3, completedBy: "", failedBy: "IrinaG"},
         AC_7: {id: 7, name: "If file is moved from one CL folder to another, it should be re-attached from intial CL item to another one within checklist as well. ", status: 1, completedBy: ""},
         AC_8: {id: 8, name: "If user moves file from CL item folder to some other folder(phase, root etc), file should be de-attached from respective CL item.", status: 1, completedBy: ""},
         AC_9: {id: 9, name: "Once CL item is completed it should not be possible to move attachments of other CL items to its folder. It should not be possible to moved files of completed CL item into some other folders.", status: 1, completedBy: ""}
@@ -145,5 +156,13 @@ Constants.CR = {
 
     list: function() {
         return [this.MULTIRADIO, this.JAPAN_PLACEHOLDER, this.CHECKLIST_BUILDER, this.CHECKLIST_ITEM_ATTACHMENTS, this.PLANNING_TOOL];
+    },
+    getById: function(crId) {
+        for (var item in this) {
+            if (!this.hasOwnProperty(item)) continue;
+            var cr = this[item];
+            if (cr['id'] === crId) return cr;
+        }
+        return null;
     }
 };

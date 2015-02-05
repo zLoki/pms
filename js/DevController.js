@@ -3,5 +3,6 @@ MainApp.controller("DevViewController", function($controller, $scope) {
 
     $scope.filters = [];
 
-    $scope.tasks = [Constants.Task.Task_11, Constants.Task.Task_12, Constants.Task.Task_13, Constants.Task.Task_14, Constants.Task.Task_15];
+    $scope.crs = Constants.CR.list();
+    $scope.tasks = [].concat(Constants.Task.getMultiRadioList()).concat(Constants.Task.getChecklistBuilderList());
 });

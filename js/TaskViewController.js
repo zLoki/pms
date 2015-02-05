@@ -5,28 +5,9 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
 
     var taskId = $stateParams['taskId'];
 
-    $scope.users = Constants.User.list();
-    $scope.task = Constants.Task.getTaskById(parseFloat($stateParams['taskId']));
+    $scope.task = taskId ? Constants.Task.getTaskById(parseFloat(taskId)) : {};
 
     $scope.checklists = [{name: 'test CL', items: Constants.Item.getItemsByTaskId($scope.task.id)}];
-
-    $scope.getAssignedUsers = function(assignedTo) {
-        if (!assignedTo) return "";
-        return assignedTo.join(", ");
-    };
-
-    $scope.updateItemProgress = function(item) {
-        item.isCompleted = !item.isCompleted;
-    };
-
-    $scope.editItem = function(item, $event, $form) {
-        $event.stopPropagation();
-        $form.$visible = true;
-    };
-
-    $scope.closeEditItem = function($form) {
-        $form.$visible = false;
-    };
 
     $scope.addNewItem = function(checklist, newItem, newItemForm) {
         newItemForm.committed = true;
@@ -34,7 +15,7 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
             //newItemForm.committed = false;
             return;
         }
-        if (_isAlreadyAdded(checklist, newItem)) {
+        if (_isAlreadyAdded(checklist.items, newItem)) {
             alert("Item with such name already added.");
             newItemForm.committed = false;
             return;
@@ -49,9 +30,9 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
         newItemForm.committed = false;
     };
 
-    var _isAlreadyAdded = function(checklist, item) {
-        for (var i = 0; i < checklist.items.length; i++) {
-            var obj = checklist.items[i];
+    var _isAlreadyAdded = function(items, item) {
+        for (var i = 0; i < items.length; i++) {
+            var obj = items[i];
             if (obj.name === item.name) return true;
         }
         return false;

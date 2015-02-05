@@ -6,6 +6,40 @@
         <div class="panel-body">
             <div>
                 <div class="row">
+                    <div class="col-lg-5"><strong>Title</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Status</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Spent</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Forecast Start</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
+                    </tr>
+                    <div class="row">
+                        <div ng-if="!tasks.length" class="col-lg-12">No tasks assigned</div>
+                        <div ng-repeat="cr in crs">
+                            <div ng-click="goToCr(cr)" class="col-lg-5" style="cursor: pointer;">{{ cr.name }}</div>
+                            <div ng-class="{'label-new': cr.status == 1,
+                                'label-in-analysis': cr.status == 2,
+                                'label-in-progress': cr.status == 3,
+                                'label-on-hold': cr.status == 4,
+                                'label-complete': cr.status == 5}" class="label text-center col-lg-1">{{ getStatusName(cr.status) || 'New' }}</div>
+                            <div class="text-center col-lg-1">{{ cr.forecast || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ cr.estimate || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ cr.spent || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ (cr.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ (cr.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="panel">
+        <div class="panel-body">
+            <div>
+                <div class="row">
                     <div class="col-lg-5"><strong>Task Title</strong></div>
                     <div class="col-lg-1 text-center"><strong>Status</strong></div>
                     <div class="col-lg-1 text-center"><strong>Forecast</strong></div>

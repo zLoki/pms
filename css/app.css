@@ -1,0 +1,18 @@
+.label-default {
+    background-color: #777;
+}
+.label-new {
+    background-color: #8b42d8;
+}
+.label-complete {
+    background-color: #5cb85c;
+}
+.label-on-hold {
+    background-color: #5bc0de;
+}
+.label-in-analysis {
+    background-color: #f02e28;
+}
+.label-in-progress {
+    background-color: #d9cd0e;
+}

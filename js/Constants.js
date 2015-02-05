@@ -33,11 +33,11 @@ var Constants = {
 
     Task: {
         NONAME: {id: null, name: "", status: null, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
-        Task_11: {id: 569.1, name: "GUI Design and Logic", status: null, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
-        Task_12: {id: 569.2, name: "Adjust functionality to customize CL items and AFs per CL (not WP)", status: null, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
-        Task_13: {id: 569.3, name: "Adjust functionality to create single CL and proper phases", status: null, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
-        Task_14: {id: 569.4, name: "Mass Update Functionality", status: null, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
-        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", status: null, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
+        Task_11: {id: 569.1, name: "GUI Design and Logic", status: 1, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
+        Task_12: {id: 569.2, name: "Adjust functionality to customize CL items and AFs per CL (not WP)", status: 2, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
+        Task_13: {id: 569.3, name: "Adjust functionality to create single CL and proper phases", status: 3, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
+        Task_14: {id: 569.4, name: "Mass Update Functionality", status: 4, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
+        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", status: 5, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
         Task_21: {id: null, name: "PA Checklist Customization", status: 5, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
         Task_22: {id: null, name: "PA Customization per project", status: 5, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
         Task_23: {id: null, name: "Iteration Dashboard changes", status: 5, estimate: null, spent: null, forecastStart: null, forecastEnd: null},
@@ -50,7 +50,15 @@ var Constants = {
         IN_ANALYSIS: {id: 2, name: "In Analysis"},
         IN_PROGRESS: {id: 3, name: "In Progress"},
         ON_HOLD: {id: 4, name: "On Hold"},
-        COMPLETE: {id: 5, name: "Complete"}
+        COMPLETE: {id: 5, name: "Complete"},
+        getStatus: function(id) {
+            var list = [Constants.Status.NEW, Constants.Status.IN_ANALYSIS, Constants.Status.IN_PROGRESS, Constants.Status.ON_HOLD, Constants.Status.COMPLETE];
+            for (var i = 0; i < list.length; i++) {
+                var obj = list[i];
+                if (obj.id === id) return obj;
+            }
+            return {};
+        }
     },
 
     Item: {
@@ -70,10 +78,10 @@ var Constants = {
     AcceptanceCriteria: {
         AC_1: {id: 1, name: "Once new opportunity is created, root folders for all phases should be created automatically.", status: 1, completedBy: ""},
         AC_2: {id: 2, name: "The names of folders should be the same as phases have.", status: 1, completedBy: ""},
-        AC_3: {id: 3, name: "User should be able to upload files with predefined extensions into automatically created phasesâ€™ folders.", status: 1, completedBy: ""},
+        AC_3: {id: 3, name: "User should be able to upload files with predefined extensions into automatically created phases’ folders.", status: 1, completedBy: ""},
         AC_4: {id: 4, name: "Once user uploads file into CL item folder within File Manager, the file appears as CL attachment on checklist as well.", status: 1, completedBy: ""},
         AC_5: {id: 5, name: "If file uploaded as attachment of certain CL item gets locked within File Manager, it should not be possible to delete it within checklist. Thus delete icon on checklist will be hidden until file is unlocked.", status: 1, completedBy: ""},
-        AC_6: {id: 6, name: "Files uploaded as attachments of CL items should be movable between CL itemsâ€™ folders of all phases until CL items are completed.", status: 1, completedBy: ""},
+        AC_6: {id: 6, name: "Files uploaded as attachments of CL items should be movable between CL items’ folders of all phases until CL items are completed.", status: 1, completedBy: ""},
         AC_7: {id: 7, name: "If file is moved from one CL folder to another, it should be re-attached from intial CL item to another one within checklist as well. ", status: 1, completedBy: ""},
         AC_8: {id: 8, name: "If user moves file from CL item folder to some other folder(phase, root etc), file should be de-attached from respective CL item.", status: 1, completedBy: ""},
         AC_9: {id: 9, name: "Once CL item is completed it should not be possible to move attachments of other CL items to its folder. It should not be possible to moved files of completed CL item into some other folders.", status: 1, completedBy: ""}

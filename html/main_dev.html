@@ -1,10 +1,4 @@
-<div ng-controller="DevController">
-    <div class="row">
-        <div class="pull-right">
-            <button ng-if="viewType != 'dev'" ng-click="goToState('pms.dev')" class="btn btn-default">Dev View</button>
-            <button ng-if="viewType != 'pm'" ng-click="goToState('pms.pm')" class="btn btn-default">PM View</button>
-        </div>
-    </div>
+<div>
 
     <div class="panel-body">
 
@@ -17,7 +11,11 @@
                 </tr>
                 <tr ng-repeat="task in tasks">
                     <td>{{ task.name }}</td>
-                    <td>{{ task.status }}</td>
+                    <td ng-class="{'label-new': task.status == 1,
+                                    'label-in-analysis': task.status == 2,
+                                    'label-in-progress': task.status == 3,
+                                    'label-on-hold': task.status == 4,
+                                    'label-complete': task.status == 5}" class="label">{{ getStatusName(task.status) }}</td>
                     <td>...</td>
                 </tr>
             </table>

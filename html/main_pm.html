@@ -1,1 +1,44 @@
-PM main page
+<div class="panel panel-success">
+    <div class="panel-heading">
+        Select project properties:
+        <div style="display: inline-block;">
+            <select class="form-control input-xs" style="width: 250px; padding-left: 10px;" ng-options="project.id as project.name for project in filterProjects" ng-model="filter.project">
+                <option value="">Select Project</option>
+            </select>
+        </div>
+        <div style="display: inline-block;">
+            <select class="form-control input-xs" style="width: 250px; padding-left: 10px;" ng-options="release.id as release.name for release in filterReleases" ng-model="filter.release">
+                <option value="">Select Release</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-sm btn-success" ng-click="init()">Apply</button>
+    </div>
+    <div>
+        <table class="table" style="margin-bottom: 0;">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+        </table>
+        <div class="panel-group" ng-model="panels.activePanel" bs-collapse>
+            <div class="panel panel-default" style="margin-top: 0;" ng-repeat="changeRequest in changeRequests track by changeRequest.id">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a bs-collapse-toggle>
+                            {{ changeRequest.name }}
+                        </a>
+                    </h4>
+                </div>
+                <div ng-if="changeRequest.tasks" class="panel-collapse" bs-collapse-target>
+                    <div class="panel-body" ng-repeat="task in changeRequest.tasks track by task.id">
+                        {{ task.name }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

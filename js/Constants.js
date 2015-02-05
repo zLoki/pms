@@ -47,8 +47,12 @@ var Constants = {
         Task_21: {id: 628.4, name: "PA Checklist Customization", status: 5, estimate: 112, spent: 112, forecastStart: null, forecastEnd: null},
         Task_23: {id: 628.5, name: "Iteration Dashboard changes", status: 5, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
 
-        MultiRadioList: [this.Task_11, this.Task_12, this.Task_13,this.Task_14, this.Task_15],
-        ChecklistBuilderList: [this.Task_21, this.Task_22, this.Task_23,this.Task_24, this.Task_25]
+        getMultiRadioList: function() {
+            return [this.Task_11, this.Task_12, this.Task_13, this.Task_14, this.Task_15];
+        },
+        getChecklistBuilderList: function () {
+            return [this.Task_21, this.Task_22, this.Task_23, this.Task_24, this.Task_25];
+        }
     },
 
     Status: {
@@ -110,9 +114,13 @@ var Constants = {
 };
 
 Constants.CR = {
-    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.MultiRadioList},
-    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5},
-    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.ChecklistBuilderList},
-    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4},
-    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3}
+    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.getMultiRadioList()},
+    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5, tasks: null},
+    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.getChecklistBuilderList()},
+    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: null},
+    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: null},
+
+    list: function() {
+        return [this.MULTIRADIO, this.JAPAN_PLACEHOLDER, this.CHECKLIST_BUILDER, this.CHECKLIST_ITEM_ATTACHMENTS, this.PLANNING_TOOL];
+    }
 };

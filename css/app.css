@@ -17,6 +17,14 @@
     background-color: #d9cd0e;
 }
 
+.input-xs {
+    border-radius: 5px;
+    font-size: 12px;
+    height: 25px;
+    line-height: 15px;
+    padding: 4px 10px;
+}
+
 .truncate-text {
     text-overflow: ellipsis;
     white-space: nowrap;

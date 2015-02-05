@@ -30,6 +30,9 @@
         margin-bottom: 0;
         color: #2B669A;
     }
+    .toggle-icon {
+        margin-bottom: -12px;
+    }
 </style>
 <div ng-init="init()" ng-controller="AcViewController">
     <div class="alert alert-info">
@@ -76,7 +79,7 @@
                             <div style="display: inline-block; width: 95%; margin-left: 10px;">
                                 <span class="panel-title">{{ ac.name }}</span>
                             </div>
-                            <div style="color: #D99D9C; text-align: center;" bs-collapse-toggle>
+                            <div style="color: #D99D9C; text-align: center;" ng-class="{'toggle-icon': ac.status.id == 3}" bs-collapse-toggle>
                                 <span ng-if="ac.status.id == 3" class="glyphicon glyphicon-chevron-down" style="cursor: pointer;"></span>
                             </div>
                         </div>

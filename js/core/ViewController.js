@@ -35,4 +35,12 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams) {
     $scope.closeEditItem = function($form) {
         $form.$visible = false;
     };
+
+    $scope._isAlreadyAdded = function(items, item) {
+        for (var i = 0; i < items.length; i++) {
+            var obj = items[i];
+            if (obj.name === item.name) return true;
+        }
+        return false;
+    }
 });

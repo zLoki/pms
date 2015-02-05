@@ -21,7 +21,7 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
             //newItemForm.committed = false;
             return;
         }
-        if (_isAlreadyAdded(checklist.items, newItem)) {
+        if ($scope._isAlreadyAdded(checklist.items, newItem)) {
             alert("Item with such name already added.");
             newItemForm.committed = false;
             return;
@@ -36,11 +36,5 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
         newItemForm.committed = false;
     };
 
-    var _isAlreadyAdded = function(items, item) {
-        for (var i = 0; i < items.length; i++) {
-            var obj = items[i];
-            if (obj.name === item.name) return true;
-        }
-        return false;
-    }
+
 });

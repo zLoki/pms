@@ -38,9 +38,6 @@ var Constants = {
         Task_13: {id: "569.3", name: "Adjust functionality to create single CL and proper phases", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_14: {id: "569.4", name: "Mass Update Functionality", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_15: {id: "569.5", name: "Checklist dependencies on administration page", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_16: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_17: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_18: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_21: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_22: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_23: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
@@ -87,7 +84,7 @@ var Constants = {
         COMPLETED: {id: "2", name: "Complete"},
         FAILED: {id: "3", name: "Failed"}
     },
-asdfsdafsda
+
     Log: {
         FM_LOG: [
             {date: "30/01/2015", trackedBy: "AlexanderShe", actValue: "6.6", estValue: "6.6"},

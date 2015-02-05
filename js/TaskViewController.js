@@ -3,12 +3,12 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
 
     console.log($stateParams)
 
+    var taskId = $stateParams['taskId'];
+
     $scope.users = Constants.User.list();
     $scope.task = Constants.Task.getTaskById(parseFloat($stateParams['taskId']));
 
-    console.log();
-
-    $scope.checklists = [{name: 'test CL', items: [Constants.Item.Item_11, Constants.Item.Item_12, Constants.Item.Item_13, Constants.Item.Item_14]}];
+    $scope.checklists = [{name: 'test CL', items: Constants.Item.getItemsByTaskId($scope.task.id)}];
 
     $scope.getAssignedUsers = function(assignedTo) {
         if (!assignedTo) return "";
@@ -39,7 +39,11 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
             newItemForm.committed = false;
             return;
         }
-        checklist.items.push(angular.copy(newItem));
+        newItem.id = new Date().getTime();
+        newItem.taskId = $scope.task.id;
+        var item = angular.copy(newItem);
+        Constants.Item[newItem.id] = item;
+        checklist.items.push(item);
         newItemForm.$setPristine();
         newItem.name = "";
         newItemForm.committed = false;

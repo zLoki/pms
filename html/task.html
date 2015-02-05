@@ -3,10 +3,10 @@
 </style>
 <div>
     <div>
-        <a href="#/dev">back</a>
+        <a href="#/dev">back to Dev View</a>
     </div>
-    <div>
-
+    <div class="bs-callout bs-callout-info">
+        <strong>{{ task.name }}</strong> task details.
     </div>
     <div>
         <div ng-repeat="checklist in checklists" class="panel">
@@ -34,6 +34,7 @@
                     </div>
                 </div>
                 <div style="max-height: 500px; overflow-x: hidden; overflow-y: auto;">
+                    <div ng-if="!checklist.items.length" class="col-lg-12 text-center">No items were created</div>
                     <div ng-repeat="item in checklist.items" class="row">
                         <div class="col-lg-1" style="width: 30px;">
                             <button ng-click="updateItemProgress(item)" class="btn btn-xs btn-flat btn-flat-success" style="border: none;">

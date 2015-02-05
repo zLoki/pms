@@ -32,15 +32,23 @@ var Constants = {
     },
 
     Item: {
-        Item_11: {id: 11, name: "Create migration to create folders for opportunity phases", description: "", min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
-        Item_12: {id: 12, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
-        Item_13: {id: 13, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
-        Item_14: {id: 14, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
-        Item_15: {id: 15, name: "Check File Manager to work with new Opportunity folders structure", description: "", min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS"]},
-        Item_16: {id: 16, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS", "VladimirSh"]},
-        Item_17: {id: 17, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["VladimirSh"]},
+        Item_11: {id: 11, taskId: 569.1, name: "Create migration to create folders for opportunity phases", description: "", min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
+        Item_12: {id: 12, taskId: 569.1, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
+        Item_13: {id: 13, taskId: 569.1, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
+        Item_14: {id: 14, taskId: 569.1, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
+        Item_15: {id: 15, taskId: 569.1, name: "Check File Manager to work with new Opportunity folders structure", description: "", min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS"]},
+        Item_16: {id: 16, taskId: 628.2, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS", "VladimirSh"]},
+        Item_17: {id: 17, taskId: 628.5, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["VladimirSh"]},
 
-        ClItemAttachmentsTaskItemsList: [this.Item_11, this.Item_12, this.Item_13, this.Item_14, this.Item_15, this.Item_16, this.Item_17]
+        ClItemAttachmentsTaskItemsList: [this.Item_11, this.Item_12, this.Item_13, this.Item_14, this.Item_15, this.Item_16, this.Item_17],
+        getItemsByTaskId: function(taskId) {
+            var list = [];
+            for (var item in this) {
+                if (!this.hasOwnProperty(item)) continue;
+                if (this[item]['taskId'] === taskId) list.push(this[item]);
+            }
+            return list;
+        }
     },
 
     Task: {
@@ -48,7 +56,7 @@ var Constants = {
         Task_12: {id: 569.2, name: "Adjust functionality to customize CL items and AFs per CL (not WP)", status: 2, estimate: 32, spent: 0, forecastStart: null, forecastEnd: null},
         Task_13: {id: 569.3, name: "Adjust functionality to create single CL and proper phases", status: 3, estimate: 16, spent: 12, forecastStart: null, forecastEnd: null},
         Task_14: {id: 569.4, name: "Mass Update Functionality", status: 4, estimate: 8, spent: 0, forecastStart: null, forecastEnd: null},
-        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", status: 5, estimate: 40, spent: 40, forecastStart: null, forecastEnd: null},
+        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", status: 5, estimate: 40, spent: 40, forecastStart: 1422121947759, forecastEnd: 1423161947759},
         Task_25: {id: 628.1, name: "Phase Details Tab", status: 5, estimate: 56, spent: 56, forecastStart: null, forecastEnd: null},
         Task_24: {id: 628.2, name: "Phase Details to Activity Assignment Tab", status: 5, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
         Task_22: {id: 628.3, name: "PA Customization per project", status: 5, estimate: 16, spent: 16, forecastStart: null, forecastEnd: null},

@@ -1,1 +1,28 @@
-dev main page
+<div ng-controller="DevController">
+    <div class="row">
+        <div class="pull-right">
+            <button ng-if="viewType != 'dev'" ng-click="goToState('pms.dev')" class="btn btn-default">Dev View</button>
+            <button ng-if="viewType != 'pm'" ng-click="goToState('pms.pm')" class="btn btn-default">PM View</button>
+        </div>
+    </div>
+
+    <div class="panel-body">
+
+        <div>
+            <table>
+                <tr>
+                    <th>Task Title</th>
+                    <th>Status</th>
+                    <th>...</th>
+                </tr>
+                <tr ng-repeat="task in tasks">
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>...</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>

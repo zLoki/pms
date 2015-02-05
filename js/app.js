@@ -23,20 +23,17 @@ MainApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('pms.home', {
             url: "/",
-            templateUrl: "html/home.html"
+            templateUrl: "html/home.html",
+            controller: 'MainController'
         })
         .state('pms.dev', {
             url: "/dev",
             templateUrl: "html/main_dev.html",
-            controller: function($scope) {
-                $scope.items = ["A", "List", "Of", "Items"];
-            }
+            controller: 'DevController'
         })
         .state('pms.pm', {
             url: "/pm",
             templateUrl: "html/main_pm.html",
-            controller: function($scope) {
-                $scope.things = ["A", "Set", "Of", "Things"];
-            }
+            controller: 'PmController'
         });
 });

@@ -13,9 +13,8 @@
                     <div class="col-lg-1 text-center"><strong>Spent</strong></div>
                     <div class="col-lg-1 text-center"><strong>Forecast Start</strong></div>
                     <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
-                    </tr>
                     <div class="row">
-                        <div ng-if="!tasks.length" class="col-lg-12">No tasks assigned</div>
+                        <div ng-if="!crs.length" class="col-lg-12">No CR's available</div>
                         <div ng-repeat="cr in crs">
                             <div ng-click="goToCr(cr)" class="col-lg-5" style="cursor: pointer;">{{ cr.name }}</div>
                             <div ng-class="{'label-new': cr.status == 1,

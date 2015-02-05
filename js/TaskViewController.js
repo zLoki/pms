@@ -1,10 +1,6 @@
 MainApp.controller("TaskViewController", function($controller, $scope, $stateParams) {
     $controller('ViewController', {$scope: $scope});
 
-    var current = {name: 'Task', url: 'pms.task'};
-
-
-
     var taskId = $stateParams['taskId'];
 
     $scope.task = taskId ? Constants.Task.getTaskById(parseFloat(taskId)) : {};

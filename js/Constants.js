@@ -86,5 +86,17 @@ var Constants = {
         NEW: {id: "1", name: "New"},
         COMPLETED: {id: "2", name: "Complete"},
         FAILED: {id: "3", name: "Failed"}
+    },
+
+    Log: {
+        FM_LOG: [
+            {date: "30/01/2015", trackedBy: "AlexanderShe", actValue: "6.6", estValue: "6.6"},
+            {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: "5.9", estValue: "6"},
+            {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: "7.9", estValue: "8"},
+            {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: "2.8", estValue: "2"},
+            {date: "21/11/2014", trackedBy: "AlexanderShe", actValue: "5.9", estValue: "6"},
+            {date: "20/11/2014", trackedBy: "AlexanderShe", actValue: "8.2", estValue: "8.2"},
+            {date: "19/11/2014", trackedBy: "AlexanderShe", actValue: "8.5", estValue: "8.5"},
+            {date: "18/11/2014", trackedBy: "AlexanderShe", actValue: "9", estValue: "9"}]
     }
 };

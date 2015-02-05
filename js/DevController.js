@@ -8,5 +8,5 @@ MainApp.controller("DevViewController", function($controller, $scope) {
     $scope.filters = [];
 
     $scope.crs = Constants.CR.list();
-    $scope.tasks = [].concat(Constants.Task.getMultiRadioList()).concat(Constants.Task.getChecklistBuilderList());
+    $scope.tasks = [].concat(Constants.Task.getMultiRadioList());
 });

@@ -1,8 +1,46 @@
 <div class="row" style="margin-bottom: 20px;">
 
 </div>
+
 <div class="row">
     <div class="panel">
+        <div class="panel-header">Assigned Tasks</div>
+        <div class="panel-body">
+            <div>
+                <div class="row">
+                    <div class="col-lg-5"><strong>Task Title</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Status</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Spent</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Forecast Start</strong></div>
+                    <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
+                    <div class="row">
+                        <div ng-if="!tasks.length" class="col-lg-12">No tasks assigned</div>
+                        <div ng-repeat="task in tasks">
+                            <div ng-click="goToTask(task)" class="col-lg-5" style="cursor: pointer;">{{ task.name }}</div>
+                            <div ng-class="{'label-new': task.status == 1,
+                                'label-in-analysis': task.status == 2,
+                                'label-in-progress': task.status == 3,
+                                'label-on-hold': task.status == 4,
+                                'label-complete': task.status == 5}" class="label text-center col-lg-1">{{ getStatusName(task.status) || 'New' }}</div>
+                            <div class="text-center col-lg-1">{{ task.forecast || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ task.estimate || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ task.spent || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ (task.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ (task.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel">
+        <div class="panel-header">Available CR's</div>
         <div class="panel-body">
             <div>
                 <div class="row">
@@ -31,39 +69,6 @@
                     </div>
 
                 </div>
-            </div>
-        </div>
-    </div>
-<div class="row">
-    <div class="panel">
-        <div class="panel-body">
-            <div>
-                <div class="row">
-                    <div class="col-lg-5"><strong>Task Title</strong></div>
-                    <div class="col-lg-1 text-center"><strong>Status</strong></div>
-                    <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
-                    <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
-                    <div class="col-lg-1 text-center"><strong>Spent</strong></div>
-                    <div class="col-lg-1 text-center"><strong>Forecast Start</strong></div>
-                    <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
-                </tr>
-                <div class="row">
-                    <div ng-if="!tasks.length" class="col-lg-12">No tasks assigned</div>
-                    <div ng-repeat="task in tasks">
-                        <div ng-click="goToTask(task)" class="col-lg-5" style="cursor: pointer;">{{ task.name }}</div>
-                        <div ng-class="{'label-new': task.status == 1,
-                                'label-in-analysis': task.status == 2,
-                                'label-in-progress': task.status == 3,
-                                'label-on-hold': task.status == 4,
-                                'label-complete': task.status == 5}" class="label text-center col-lg-1">{{ getStatusName(task.status) || 'New' }}</div>
-                        <div class="text-center col-lg-1">{{ task.forecast || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ task.estimate || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ task.spent || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ (task.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ (task.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
-                    </div>
-                </div>
-                    
             </div>
         </div>
     </div>

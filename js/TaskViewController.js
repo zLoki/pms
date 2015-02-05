@@ -1,6 +1,8 @@
 MainApp.controller("TaskViewController", function($controller, $scope, $stateParams) {
     $controller('ViewController', {$scope: $scope});
 
+    $scope.main.showBreadcrambs = true;
+
     var taskId = $stateParams['taskId'];
 
     $scope.task = taskId ? Constants.Task.getTaskById(parseFloat(taskId)) : {};

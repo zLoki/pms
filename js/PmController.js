@@ -14,4 +14,13 @@ MainApp.controller("PmViewController", function($controller, $scope) {
     $scope.init = function() {
         $scope.changeRequests = Constants.CR.list();
     };
+    $scope.getStatusName = function(id) {
+        var status = Constants.Status.getStatus(id);
+        return status ? status.name : null;
+    };
+
+    $scope.getPriorityName = function(id) {
+        var priority = Constants.Priority.getPriority(id);
+        return priority ? priority.name : null;
+    };
 });

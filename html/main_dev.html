@@ -40,17 +40,21 @@
         <div class="panel-header" style="background-color: #eaeaea; padding: 4px;">Assigned Tasks</div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-5"><strong>Task Title</strong></div>
+                <div class="col-lg-1 text-right"><strong>#</strong></div>
+                <div class="col-lg-4"><strong>Task Title</strong></div>
                 <div class="col-lg-1 text-center"><strong>Status</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
                 <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
                 <div class="col-lg-1 text-center"><strong>Spent</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast Start</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
-                <div class="row" style="max-height: 300px; overflow-x: hidden; overflow-y: auto; width: 100%;">
+                <div class="col-lg-12" style="max-height: 300px; overflow-x: hidden; overflow-y: auto; width: 100%;">
                     <div ng-if="!tasks.length" class="col-lg-12">No tasks assigned</div>
-                    <div ng-repeat="task in tasks | orderBy:filters.orderBy track by task.id">
-                        <div ng-click="goToTask(task)" class="col-lg-5" style="cursor: pointer;">{{ task.name }}</div>
+                    <div ng-repeat="task in tasks | orderBy:filters.orderBy track by task.id" style="float: left; width: 100%;">
+                        <div class="text-right col-lg-1">{{ task.id }}</div>
+                        <div ng-click="goToTask(task)" class="col-lg-5 truncate-text"
+                             title="{{ task.name }}"
+                             style="cursor: pointer; display: inline-block; max-width: none; min-width: auto;">{{ task.name }}</div>
                         <div ng-class="{'label-new': task.status == 1,
                             'label-in-analysis': task.status == 2,
                             'label-in-progress': task.status == 3,
@@ -73,7 +77,8 @@
         <div class="panel-header" style="background-color: #eaeaea; padding: 4px;">Available CR's</div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-5"><strong>CR Title</strong></div>
+                <div class="col-lg-1 text-right"><strong>#</strong></div>
+                <div class="col-lg-4"><strong>CR Title</strong></div>
                 <div class="col-lg-1 text-center"><strong>Status</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
                 <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
@@ -82,18 +87,44 @@
                 <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
                 <div class="row" style="max-height: 300px; overflow-x: hidden; overflow-y: auto; width: 100%;">
                     <div ng-if="!crs.length" class="col-lg-12">No CR's available</div>
-                    <div ng-repeat="cr in crs">
-                        <div ng-click="goToCr(cr)" class="col-lg-5" style="cursor: pointer;">{{ cr.name }}</div>
-                        <div ng-class="{'label-new': cr.status == 1,
-                            'label-in-analysis': cr.status == 2,
-                            'label-in-progress': cr.status == 3,
-                            'label-on-hold': cr.status == 4,
-                            'label-complete': cr.status == 5}" class="label text-center col-lg-1">{{ getStatusName(cr.status) || 'New' }}</div>
-                        <div class="text-center col-lg-1">{{ cr.forecast || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ cr.estimate || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ cr.spent || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ (cr.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ (cr.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
+                    <div ng-repeat="cr in crs | orderBy:['name'] track by cr.id">
+                        <div class="col-lg-12">
+                            <div class="text-right col-lg-1">{{ cr.id }}</div>
+                            <div ng-click="goToCr(cr)" class="col-lg-5 truncate-text"
+                                 title="{{ cr.name }}"
+                                 style="cursor: pointer; display: inline-block; max-width: none; min-width: auto;">
+                                <strong ng-if="cr.tasks.length">{{ cr.name }}</strong>
+                                <span ng-if="!cr.tasks.length">{{ cr.name }}</span>
+                            </div>
+                            <div ng-class="{'label-new': cr.status == 1,
+                                            'label-in-analysis': cr.status == 2,
+                                            'label-in-progress': cr.status == 3,
+                                            'label-on-hold': cr.status == 4,
+                                            'label-complete': cr.status == 5}" class="label text-center col-lg-1">{{ getStatusName(cr.status) || 'New' }}</div>
+                            <div class="text-center col-lg-1">{{ cr.forecast || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ cr.estimate || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ cr.spent || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ (cr.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
+                            <div class="text-center col-lg-1">{{ (cr.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div ng-repeat="task in cr.tasks | orderBy:filters.orderBy track by task.id" style="float: left; width: 100%;">
+                                <div class="text-right col-lg-1">{{ task.id }}</div>
+                                <div ng-click="goToTask(task)" class="col-lg-5 truncate-text"
+                                     title="{{ task.name }}"
+                                     style="cursor: pointer; padding-left: 4%; display: inline-block; max-width: none; min-width: auto;">{{ task.name }}</div>
+                                <div ng-class="{'label-new': task.status == 1,
+                                                'label-in-analysis': task.status == 2,
+                                                'label-in-progress': task.status == 3,
+                                                'label-on-hold': task.status == 4,
+                                                'label-complete': task.status == 5}" class="label text-center col-lg-1">{{ getStatusName(task.status) || 'New' }}</div>
+                                <div class="text-center col-lg-1">{{ task.forecast || '-' }}</div>
+                                <div class="text-center col-lg-1">{{ task.estimate || '-' }}</div>
+                                <div class="text-center col-lg-1">{{ task.spent || '-' }}</div>
+                                <div class="text-center col-lg-1">{{ (task.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
+                                <div class="text-center col-lg-1">{{ (task.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -169,9 +169,9 @@ var Constants = {
 };
 
 Constants.CR = {
-    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.getMultiRadioList()},
+    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 3, tasks: Constants.Task.getMultiRadioList()},
     JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5, tasks: [Constants.Task.Task_26]},
-    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.getChecklistBuilderList()},
+    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 5, tasks: Constants.Task.getChecklistBuilderList()},
     CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: [Constants.Task.Task_27]},
     PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: [Constants.Task.Task_28]},
     list: function() {

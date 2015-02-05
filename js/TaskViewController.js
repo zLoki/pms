@@ -1,11 +1,19 @@
 MainApp.controller("TaskViewController", function($controller, $scope, $stateParams) {
     $controller('ViewController', {$scope: $scope});
 
-    console.log($stateParams)
+    var current = {name: 'Task', url: 'pms.task'};
+
+
 
     var taskId = $stateParams['taskId'];
 
     $scope.task = taskId ? Constants.Task.getTaskById(parseFloat(taskId)) : {};
+
+    $scope.task.url = 'pms.task';
+    if ($scope.main.breadCrumbItems.indexOf($scope.task) == -1) {
+        $scope.main.breadCrumbItems.push($scope.task);
+        $scope.main.currentBreadCrumbItem = $scope.task;
+    }
 
     $scope.checklists = [{name: 'test CL', items: Constants.Item.getItemsByTaskId($scope.task.id)}];
 

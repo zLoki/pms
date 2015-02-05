@@ -36,6 +36,11 @@
 
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">Project Management System</a>
+    </div>
+</nav>
 <div style="margin: 5px 5px 0;">
     <div id="wrapper" ng-controller="MainController" style="width: 100%; padding-left: 0;">
 
@@ -170,6 +175,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="panel">
+                                        <div ng-if="main.showBreadcrambs" class="bread-crumb" style="margin-bottom: 20px;">
+                                            <ul>
+                                                <li ng-repeat="item in main.breadCrumbItems track by item.id" class="bread-crumb-line-height">
+                                                    <span ng-if="item.id == main.currentBreadCrumbItem.id">{{ item.name }}</span>
+                                                    <a ng-if="item.id != main.currentBreadCrumbItem.id" class="bread-crumb-link" ng-click="goToBreadCrumbItem(item)">{{ item.name }}</a>
+                                                    <span class="glyphicon glyphicon-chevron-right" style="color: #A3A3A3"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
 
                                         <div ui-view></div>
 

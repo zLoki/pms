@@ -2,8 +2,15 @@
 
 </style>
 <div>
-    <div>
-        <a href="#/dev">back to Dev View</a>
+    <div ng-if="!main.showBreadcrambs">
+        <div class="bread-crumb ng-scope" ng-if="main.showBreadcrambs">
+            <ul>
+                <li class="bread-crumb-line-height">
+                    <a class="bread-crumb-link ng-binding ng-scope" href="#/dev">Main View</a>
+                    <span class="glyphicon glyphicon-chevron-right" style="color: #A3A3A3"></span>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="bs-callout bs-callout-info">
         <strong>{{ task.name }}</strong> task details.

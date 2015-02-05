@@ -1,6 +1,8 @@
 MainApp.controller("DevViewController", function($controller, $scope) {
     $controller('ViewController', {$scope: $scope});
 
+    $scope.main.showBreadcrambs = false;
+
     $scope.filters = [];
 
     $scope.crs = Constants.CR.list();

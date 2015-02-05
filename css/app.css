@@ -1,3 +1,44 @@
+.bread-crumb {
+    /*border-top:  1px solid #DCDCDC;*/
+    /*border-left:  1px solid #DCDCDC;*/
+    /*border-right:  1px solid #DCDCDC;*/
+    /*padding: 7px;*/
+    width: auto;
+    line-height: 21px;
+    font-family: Arial,Verdana,Tahoma,Helvetica;
+    font-size: 12px;
+}
+.bread-crumb ul {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.bread-crumb ul li {
+    display: block;
+    float: left;
+    margin-right:2px;
+}
+
+.bread-crumb ul li a {
+    text-decoration: underline;
+}
+
+.bread-crumb ul li.first span {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.bread-crumb-line-height {
+    line-height: 21px;
+}
+.bread-crumb-link {
+    color: #4271c6;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .label-default {
     background-color: #777;
 }

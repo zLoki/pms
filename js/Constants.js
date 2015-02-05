@@ -45,10 +45,7 @@ var Constants = {
         Task_22: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_23: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
         Task_24: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_25: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_31: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_32: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""},
-        Task_33: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""}
+        Task_25: {id: "", name: "", status: "", estimate: "", spent: "", forecastStart: "", forecastEnd: ""}
     },
 
     Status: {
@@ -60,16 +57,34 @@ var Constants = {
     },
 
     Item: {
-        Item_11: {id: "", name: "Create migration to create folders for opportunity phases", description: "", min: "4", max: "8", likely: "8", weighted_avg: ""},
-        Item_12: {id: "", name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: "8", max: "24", likely: "16", weighted_avg: ""},
-        Item_13: {id: "", name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: "4", max: "6", likely: "5", weighted_avg: ""},
-        Item_14: {id: "", name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: "4", max: "6", likely: "5", weighted_avg: ""},
-        Item_15: {id: "", name: "Check File Manager to work with new Opportunity folders structure", description: "", min: "2", max: "4", likely: "4", weighted_avg: ""},
-        Item_16: {id: "", name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: "3", max: "6", likely: "6", weighted_avg: ""},
-        Item_17: {id: "", name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: "6", max: "12", likely: "8", weighted_avg: ""},
-        Item_21: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""},
-        Item_22: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""},
-        Item_23: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""},
-        Item_24: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: ""}
+        Item_11: {id: "11", name: "Create migration to create folders for opportunity phases", description: "", min: "4", max: "8", likely: "8", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_12: {id: "12", name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: "8", max: "24", likely: "16", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_13: {id: "13", name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: "4", max: "6", likely: "5", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_14: {id: "14", name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: "4", max: "6", likely: "5", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_15: {id: "15", name: "Check File Manager to work with new Opportunity folders structure", description: "", min: "2", max: "4", likely: "4", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_16: {id: "16", name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: "3", max: "6", likely: "6", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_17: {id: "17", name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: "6", max: "12", likely: "8", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_21: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_22: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_23: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: "", isCompleted: "0", assignedTo: ""},
+        Item_24: {id: "", name: "", description: "", min: "", max: "", likely: "", weighted_avg: "", isCompleted: "0", assignedTo: ""}
+    },
+
+    AcceptanceCriteria: {
+        AC_1: {id: "1", name: "Once new opportunity is created, root folders for all phases should be created automatically.", status: "1", completedBy: ""},
+        AC_2: {id: "2", name: "The names of folders should be the same as phases have.", status: "1", completedBy: ""},
+        AC_3: {id: "3", name: "User should be able to upload files with predefined extensions into automatically created phases’ folders.", status: "1", completedBy: ""},
+        AC_4: {id: "4", name: "Once user uploads file into CL item folder within File Manager, the file appears as CL attachment on checklist as well.", status: "1", completedBy: ""},
+        AC_5: {id: "5", name: "If file uploaded as attachment of certain CL item gets locked within File Manager, it should not be possible to delete it within checklist. Thus delete icon on checklist will be hidden until file is unlocked.", status: "1", completedBy: ""},
+        AC_6: {id: "6", name: "Files uploaded as attachments of CL items should be movable between CL items’ folders of all phases until CL items are completed.", status: "1", completedBy: ""},
+        AC_7: {id: "7", name: "If file is moved from one CL folder to another, it should be re-attached from intial CL item to another one within checklist as well. ", status: "1", completedBy: ""},
+        AC_8: {id: "8", name: "If user moves file from CL item folder to some other folder(phase, root etc), file should be de-attached from respective CL item.", status: "1", completedBy: ""},
+        AC_9: {id: "9", name: "Once CL item is completed it should not be possible to move attachments of other CL items to its folder. It should not be possible to moved files of completed CL item into some other folders.", status: "1", completedBy: ""}
+    },
+
+    ACStatus: {
+        NEW: {id: "1", name: "New"},
+        COMPLETED: {id: "2", name: "Complete"},
+        FAILED: {id: "3", name: "Failed"}
     }
 };

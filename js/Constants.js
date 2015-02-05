@@ -1,10 +1,10 @@
 var Constants = {
     Project: {
-        VENUS: {id: "1", name: "Venus"},
-        NEPTUNE: {id: "2", name: "Neptune"},
-        MARS: {id: "3", name: "Mars"},
-        JUPITER: {id: "4", name: "Jupiter"},
-        SATURN: {id: "5", name: "Saturn"},
+        VENUS: {id: 1, name: "Venus"},
+        NEPTUNE: {id: 2, name: "Neptune"},
+        MARS: {id: 3, name: "Mars"},
+        JUPITER: {id: 4, name: "Jupiter"},
+        SATURN: {id: 5, name: "Saturn"},
 
         list: function() {
             var array = [];

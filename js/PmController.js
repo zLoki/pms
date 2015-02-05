@@ -1,6 +1,8 @@
 MainApp.controller("PmViewController", function($controller, $scope) {
     $controller('ViewController', {$scope: $scope});
 
+    $scope.main.showBreadcrambs = false;
+
     $scope.filterProjects = Constants.Project.list();
     $scope.filterReleases = [Constants.Release.Z1, Constants.Release.Z2, Constants.Release.Z3];
 

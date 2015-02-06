@@ -50,7 +50,7 @@ MainApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "html/statistics.html",
             controller: 'StatisticViewController'
         })
-        .state('pms.ac', {
+        .state('pms.details', {
             url: "/pm/cr/:crId",
             templateUrl: "html/ac_details.html",
             controller: 'AcViewController'

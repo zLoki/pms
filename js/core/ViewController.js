@@ -16,6 +16,11 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams, Acce
         $state.transitionTo('pms.cr', $stateParams, {location: true, inherit: true, relative: $state.$current, notify: true});
     };
 
+    $scope.goToCrDetails = function(cr) {
+        $stateParams['crId'] = cr.id;
+        $state.transitionTo('pms.details', $stateParams, {location: true, inherit: true, relative: $state.$current, notify: true});
+    };
+
     $scope.goToTask = function(task) {
         $stateParams['crId'] = parseInt(task.id);
         $stateParams['taskId'] = task.id;

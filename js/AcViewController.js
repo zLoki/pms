@@ -2,9 +2,22 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
     $controller('ViewController', {$scope: $scope});
 
     $scope.main.showBreadcrambs = false;
+    $scope.mainBlockUI = blockUI.instances.get('mainBlockUI');
+
+    $scope.acList = [];
+    $scope.acStatuses = Constants.ACStatus.list();
+
+    $scope.defaultCriteria = {
+        id: null,
+        name: null,
+        status: Constants.ACStatus.NEW,
+        comments: []
+    };
 
     $scope.init = function() {
-        $scope.initParams();
+        $scope.changeRequest = Constants.CR.getById(parseInt($stateParams['crId']));
+        $scope.changeRequest.status = Constants.Status.getStatus($scope.changeRequest.status);
+        $scope.changeRequest.priority = Constants.Priority.getPriority($scope.changeRequest.priority);
         angular.forEach(Constants.AcceptanceCriteria.list(), function(ac) {
             ac.status = Constants.ACStatus.getStatus(ac.status);
             if (ac.comments.length) {
@@ -14,22 +27,6 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
             }
             $scope.acList.push(ac);
         });
-    };
-
-    $scope.initParams = function() {
-        $scope.mainBlockUI = blockUI.instances.get('mainBlockUI');
-        $scope.changeRequest = Constants.CR.getById(parseInt($stateParams['crId']));
-        $scope.changeRequest.status = Constants.Status.getStatus($scope.changeRequest.status);
-        $scope.changeRequest.priority = Constants.Priority.getPriority($scope.changeRequest.priority);
-        $scope.acList = [];
-
-        $scope.acStatuses = Constants.ACStatus.list();
-        $scope.defaultCriteria = {
-            id: null,
-            name: null,
-            status: Constants.ACStatus.NEW,
-            comments: []
-        };
     };
 
     $scope.initStatusUpdatePopup = function (ac) {

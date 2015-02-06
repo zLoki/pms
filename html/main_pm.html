@@ -20,7 +20,7 @@
                                         <div class="col-lg-4">
                                             <span ng-if="calculateHeartBeatByCr(changeRequest) != 0" class="glyphicon glyphicon-warning-sign" style="color: #c68282;"></span>
                                             <b>CR-#{{ changeRequest.id }} </b>
-                                            <span ng-click="goToCr(changeRequest)" style="cursor: pointer;">{{ changeRequest.name || '-' }}</span>
+                                            <span ng-click="goToCrDetails(changeRequest)" style="cursor: pointer;">{{ changeRequest.name || '-' }}</span>
                                         </div>
 
                                         <div ng-dblclick="editItem(changeRequest.priority, $event, priorityForm)" class="text-center col-lg-2">

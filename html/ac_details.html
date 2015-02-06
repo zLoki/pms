@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div>
+    <div style="display: inline-block; width: 100%;">
         <div style="width: 100%;">
             <fieldset class="fieldset-section" style="width: 60%; float: left; min-height: 157px;">
                 <legend class="group-legend">Description</legend>
@@ -100,7 +100,46 @@
                 </div>
             </fieldset>
         </div>
-        <div style="width: 100%;">
+    </div>
+    <div>
+        <div class="panel panel-default" style="margin-top: 10px;" bs-collapse>
+            <div class="panel-heading">
+                <h3 class="panel-title"><a bs-collapse-toggle style="cursor: pointer;">Acceptance Criteria</a></h3>
+            </div>
+            <div class="panel-body" bs-collapse-target>
+                <div class="panel-group" style="margin-top: 10px;" ng-model="panels.activePanel" bs-collapse>
+                    <div class="panel panel-default" ng-class="{'panel-info': ac.status.id == 2, 'panel-danger': ac.status.id == 3}" style="width: 98%; margin-left: 10px;" ng-repeat="ac in acList">
+                        <div class="panel-heading" style="background-image: none;">
+                            <div style="display: inline-block; float: left;">
+                                <button class="btn btn-xs btn-flat btn-flat-primary" ng-click="initStatusUpdatePopup(ac)" data-template="ac.update.html" data-placement="right" data-content="Test" bs-popover><span class="glyphicon glyphicon-cog"></span></button>
+                            </div>
+                            <div style="display: inline-block; width: 95%; margin-left: 10px;">
+                                <span class="panel-title">{{ ac.name }}</span>
+                            </div>
+                            <div ng-show="ac.comments.length" style="margin-bottom: -12px; text-align: center;" bs-collapse-toggle>
+                                <span class="glyphicon glyphicon-chevron-down" style="cursor: pointer;"></span>
+                            </div>
+                        </div>
+                        <div class="panel-collapse" bs-collapse-target>
+                            <div class="panel-body">
+                                <fieldset style="border: 1px solid #dddddd; background-color: #FFF; margin-bottom: 10px;" ng-repeat="comment in ac.comments">
+                                    <legend class="group-legend">{{ comment.creator }}</legend>
+                                    <div style="padding: 5px 10px;">
+                                        <span><strong>Status: </strong>{{ comment.status.name }}</span><br>
+                                        <span>{{ comment.content }}</span>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <textarea style="width: 98%; margin-left: 10px;" ng-model="defaultCriteria.name"></textarea>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="addCriteria()">Add Criteria</button>
+                </div>
+            </div>
+        </div>
+<!--        <div style="width: 100%;">
             <fieldset class="fieldset-section" style="width: inherit; /*background-color: #FFF;*/">
                 <legend class="group-legend">Acceptance Criteria</legend>
                 <div class="panel-group" style="margin-top: 10px;" ng-model="panels.activePanel" bs-collapse>
@@ -134,7 +173,131 @@
                     <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="addCriteria()">Add Criteria</button>
                 </div>
             </fieldset>
+        </div>-->
+    </div>
+
+    <div>
+        <div class="panel">
+            <div class="panel-header" style="background-color: #eaeaea; padding: 4px;"><strong>Task List</strong></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-1" style="width: 30px;padding: 0px;"><strong>Action</strong></div>
+                    <div class="col-lg-5">
+                        <strong>Name</strong>
+                    </div>
+                    <div class="col-lg-1">
+                        <strong>Min (h)</strong>
+                    </div>
+                    <div class="col-lg-1">
+                        <strong>Max (h)</strong>
+                    </div>
+                    <div class="col-lg-1">
+                        <strong>Likely (h)</strong>
+                    </div>
+                    <div class="col-lg-1">
+                        <strong>Weighted Avrg. (h)</strong>
+                    </div>
+                    <div class="col-lg-2">
+                        <strong>Assigned To</strong>
+                    </div>
+                </div>
+                <div style="max-height: 500px; overflow-x: hidden; overflow-y: auto;">
+                    <div ng-if="!tasks.length" class="col-lg-12 text-center">No items were created</div>
+                    <div ng-repeat="item in tasks" class="row">
+                        <div class="col-lg-1" style="width: 30px;">
+                            <button ng-if="canEdit()" ng-click="editTaskDetails(task)" class="btn btn-xs btn-flat" style="border: none; color: green; background-color: transparent;"></button>
+                            <button ng-if="canEdit()" ng-click="editTaskDetails(task)" class="glyphicon glyphicon-edit" style="border: none; color: green; background-color: transparent;"></button>
+                        </div>
+                        <div ng-dblclick="editItem(item, $event, itemNameForm)" class="col-lg-5">
+                            <div ng-if="!itemNameForm.$visible" ng-click="goToTask(item)" class="truncate-text" title="{{ item.name || '-' }}"
+                                 style="display: inline-block; cursor: pointer;">{{ item.name || '-' }}</div>
+                            <form name="itemNameForm">
+                                <div ng-if="itemNameForm.$visible" style="display: inline-block; width: 100%;">
+                                    <input ng-model="item.name" type="text" class="col-lg-10 form-control input-sm editable-field" style="width: 90%">
+                                    <span ng-click="closeEditItem(itemNameForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div ng-dblclick="editItem(item, $event, itemMinForm)" class="col-lg-1">
+                            <div ng-if="!itemMinForm.$visible" style="display: inline-block;">{{ item.min || '-' }}</div>
+                            <form name="itemMinForm">
+                                <div ng-if="itemMinForm.$visible" style="display: inline-block; width: 70px;">
+                                    <input ng-model="item.min" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
+                                    <span ng-click="closeEditItem(itemMinForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div ng-dblclick="editItem(item, $event, itemMaxForm)" class="col-lg-1">
+                            <div ng-if="!itemMaxForm.$visible" style="display: inline-block;">{{ item.max || '-' }}</div>
+                            <form name="itemMaxForm">
+                                <div ng-if="itemMaxForm.$visible" style="display: inline-block; width: 70px;">
+                                    <input ng-model="item.max" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
+                                    <span ng-click="closeEditItem(itemMaxForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div ng-dblclick="editItem(item, $event, itemLikelyForm)" class="col-lg-1">
+                            <div ng-if="!itemLikelyForm.$visible" style="display: inline-block;">{{ item.likely || '-' }}</div>
+                            <form name="itemLikelyForm">
+                                <div ng-if="itemLikelyForm.$visible" style="display: inline-block; width: 70px;">
+                                    <input ng-model="item.likely" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
+                                    <span ng-click="closeEditItem(itemLikelyForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div ng-dblclick="editItem(item, $event, itemWeightAvrgForm)" class="col-lg-1">
+                            <div ng-if="!itemWeightAvrgForm.$visible" style="display: inline-block;">{{ item.weighted_avg || '-' }}</div>
+                            <form name="itemWeightAvrgForm">
+                                <div ng-if="itemWeightAvrgForm.$visible" style="display: inline-block; width: 70px;">
+                                    <input ng-model="item.weighted_avg" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
+                                    <span ng-click="closeEditItem(itemWeightAvrgForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div ng-dblclick="editItem(item, $event,itemAssignedToForm)" class="col-lg-2">
+                            <div ng-if="!itemAssignedToForm.$visible" class="truncate-text" style="display: inline-block;" title="{{ getAssignedUsers(item.assignedTo) || '-' }}">
+                                {{ getAssignedUsers(item.assignedTo) || '-' }}
+                            </div>
+                            <form name="itemAssignedToForm">
+                                <div ng-if="itemAssignedToForm.$visible" style="display: inline-block; width: 145px;">
+                                    <select ng-model="item.assignedTo" ng-options="user for user in users" multiple="multiple" class="col-lg-10 form-control input-sm" style="width: 113px;">
+                                        <option value="''">Not Assigned</option>
+                                    </select>
+                                    <span ng-click="closeEditItem(itemAssignedToForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="canEdit()" class="panel-footer">
+                <div>
+                    <form name="newItemForm" class="form-inline">
+
+                        <div class="form-group">
+                            <input ng-model="newItem.name"
+                                   ng-class="{'has-error': newItemForm.committed && !newItemForm.name.$valid}"
+                                   name="name" type="text" placeholder="Item Name" class="form-control input-sm" required ng-maxlength="255">
+
+
+                        </div>
+                        <span ng-show="newItemForm.committed && newItemForm.name.$error.required">Item name cannot be left blank</span>
+                        <span ng-show="newItemForm.committed && newItemForm.name.$error.maxlength">Item name to long</span>
+                        <!--<div class="form-group">-->
+                        <!--<div style="display: inline-block; width: 145px;">-->
+                        <!--<select ng-model="newItem.assignedTo" ng-options="user for user in users" multiple="multiple" class="col-lg-10 form-control input-sm" style="width: 113px;">-->
+                        <!--<option value="''">Not Assigned</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <button ng-click="addNewItem(newItem, newItemForm)" class="btn btn-default">Add Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+
     </div>
 
 </div>

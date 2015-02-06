@@ -2,9 +2,19 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
     $controller('ViewController', {$scope: $scope});
 
     $scope.main.showBreadcrambs = false;
-    $scope.mainBlockUI = blockUI.instances.get('mainBlockUI');
 
+    $scope.changeRequest = Constants.CR.getById(parseInt($stateParams['crId']));
+
+    $scope.tasks = $scope.changeRequest ? Constants.Task.getTasksByCrId($scope.changeRequest.id) : [];
+
+//    if ($scope.main.breadCrumbItems.indexOf($scope.cr) == -1) {
+//        $scope.main.breadCrumbItems.push($scope.cr);
+//        $scope.main.currentBreadCrumbItem = $scope.cr;
+//    }
+
+    $scope.mainBlockUI = blockUI.instances.get('mainBlockUI');
     $scope.acList = [];
+
     $scope.acStatuses = Constants.ACStatus.list();
 
     $scope.defaultCriteria = {
@@ -13,9 +23,7 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
         status: Constants.ACStatus.NEW,
         comments: []
     };
-
     $scope.init = function() {
-        $scope.changeRequest = Constants.CR.getById(parseInt($stateParams['crId']));
         $scope.changeRequest.status = Constants.Status.getStatus($scope.changeRequest.status);
         $scope.changeRequest.priority = Constants.Priority.getPriority($scope.changeRequest.priority);
         angular.forEach(Constants.AcceptanceCriteria.list(), function(ac) {

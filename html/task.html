@@ -19,8 +19,8 @@
         <div ng-repeat="checklist in checklists" class="panel">
             <div class="panel-header">{{ checklist.name }}</div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-1" style="width: 30px;padding: 0px;"></div>
+                <div class="col-lg-12">
+                    <div ng-if="canEdit()" class="col-lg-1" style="padding: 0px;"></div>
                     <div class="col-lg-5">
                         <strong>Name</strong>
                     </div>
@@ -40,65 +40,79 @@
                         <strong>Assigned To</strong>
                     </div>
                 </div>
-                <div style="max-height: 500px; overflow-x: hidden; overflow-y: auto;">
+                <div class="col-lg-12" style="max-height: 500px; overflow-x: hidden; overflow-y: auto;">
                     <div ng-if="!checklist.items.length" class="col-lg-12 text-center">No items were created</div>
-                    <div ng-repeat="item in checklist.items" class="row">
-                        <div class="col-lg-1" style="width: 30px;">
-                            <button ng-click="updateItemProgress(item)" class="btn btn-xs btn-flat btn-flat-success" style="border: none;">
+                    <div ng-repeat="item in checklist.items track by item.id" class="row">
+                        <div ng-if="canEdit()" class="col-lg-1" style="padding: 0px;">
+                            <button ng-if="canEdit() && !item.editDetails && task.status && task.status != 1" ng-click="updateItemProgress(item)" class="btn btn-xs btn-flat btn-flat-success" style="border: none;">
                                 <span ng-class="{'glyphicon-check green': item.isCompleted, 'glyphicon-unchecked': !item.isCompleted}" class="glyphicon"></span>
+                            </button>
+                            <button ng-if="canEdit() && !item.editDetails" ng-click="editItemDetails(item)" style="border: none; background-color: transparent; font-size: 12px; color: #6b6bff;">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button ng-if="canEdit() && !item.editDetails" ng-click="removeItem(item)" style="border: none; background-color: transparent; font-size: 12px; color: #ce1919;">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+
+                            <button ng-if="canEdit() && item.editDetails" ng-click="closeEditItemDetails(item, [itemNameForm,itemMinForm,itemMaxForm,itemLikelyForm,itemAssignedToForm])" title="Apply changes" style="border: none; background-color: transparent; font-size: 12px; color: #92dd8f;">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+                            <button ng-if="canEdit() && item.editDetails" ng-click="closeEditItemDetails(item, [itemNameForm,itemMinForm,itemMaxForm,itemLikelyForm,itemAssignedToForm])" title="Close edit mode" style="border: none; background-color: transparent; font-size: 12px; color: #969696;">
+                                <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemNameForm)" class="col-lg-5">
-                            <div ng-if="!itemNameForm.$visible" class="truncate-text" title="{{ item.name || '-' }}" style="display: inline-block;">{{ item.name || '-' }}</div>
+                            <div ng-if="!itemNameForm.$visible && !item.editDetails" class="truncate-text" title="{{ item.name || '-' }}" style="display: inline-block;">{{ item.name || '-' }}</div>
                             <form name="itemNameForm">
-                                <div ng-if="itemNameForm.$visible" style="display: inline-block; width: 100%;">
+                                <div ng-if="itemNameForm.$visible || item.editDetails" style="display: inline-block; width: 100%;">
                                     <input ng-model="item.name" type="text" class="col-lg-10 form-control input-sm" style="width: 90%">
                                     <span ng-click="closeEditItem(itemNameForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
                                 </div>
                             </form>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemMinForm)" class="col-lg-1">
-                            <div ng-if="!itemMinForm.$visible" style="display: inline-block;">{{ item.min || '-' }}</div>
+                            <div ng-if="!itemMinForm.$visible && !item.editDetails" style="display: inline-block;">{{ item.min || '-' }}</div>
                             <form name="itemMinForm">
-                                <div ng-if="itemMinForm.$visible" style="display: inline-block; width: 70px;">
-                                    <input ng-model="item.min" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">
+                                <div ng-if="itemMinForm.$visible || item.editDetails" style="display: inline-block; width: 70px;">
+                                    <input ng-model="item.min" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
                                     <span ng-click="closeEditItem(itemMinForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
                                 </div>
                             </form>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemMaxForm)" ng-blur="itemMaxForm.$visible=false" class="col-lg-1">
-                            <div ng-if="!itemMaxForm.$visible" style="display: inline-block;">{{ item.max || '-' }}</div>
+                            <div ng-if="!itemMaxForm.$visible && !item.editDetails" style="display: inline-block;">{{ item.max || '-' }}</div>
                             <form name="itemMaxForm">
-                                <div ng-if="itemMaxForm.$visible" style="display: inline-block; width: 70px;">
-                                    <input ng-model="item.max" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">
+                                <div ng-if="itemMaxForm.$visible || item.editDetails" style="display: inline-block; width: 70px;">
+                                    <input ng-model="item.max" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
                                     <span ng-click="closeEditItem(itemMaxForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
                                 </div>
                             </form>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemLikelyForm)" class="col-lg-1">
-                            <div ng-if="!itemLikelyForm.$visible" style="display: inline-block;">{{ item.likely || '-' }}</div>
+                            <div ng-if="!itemLikelyForm.$visible && !item.editDetails" style="display: inline-block;">{{ item.likely || '-' }}</div>
                             <form name="itemLikelyForm">
-                                <div ng-if="itemLikelyForm.$visible" style="display: inline-block; width: 70px;">
-                                    <input ng-model="item.likely" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">
+                                <div ng-if="itemLikelyForm.$visible || item.editDetails" style="display: inline-block; width: 70px;">
+                                    <input ng-model="item.likely" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
                                     <span ng-click="closeEditItem(itemLikelyForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
                                 </div>
                             </form>
                         </div>
-                        <div ng-dblclick="editItem(item, $event, itemWeightAvrgForm)" class="col-lg-1">
-                            <div ng-if="!itemWeightAvrgForm.$visible" style="display: inline-block;">{{ item.weighted_avg || '-' }}</div>
-                            <form name="itemWeightAvrgForm">
-                                <div ng-if="itemWeightAvrgForm.$visible" style="display: inline-block; width: 70px;">
-                                    <input ng-model="item.weighted_avg" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">
-                                    <span ng-click="closeEditItem(itemWeightAvrgForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
-                                </div>
-                            </form>
+                        <div class="col-lg-1">
+                            <div style="display: inline-block;">{{ (item.weighted_avg = calculateWeightAvarage(item)) || '-' }}</div>
+                            <!--<div ng-if="!itemWeightAvrgForm.$visible && !editDetails" style="display: inline-block;">{{ item.weighted_avg || '-' }}</div>-->
+                            <!--<form name="itemWeightAvrgForm">-->
+                                <!--<div ng-if="itemWeightAvrgForm.$visible || editDetails" style="display: inline-block; width: 70px;">-->
+                                    <!--<input ng-model="item.weighted_avg" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">-->
+                                    <!--<span ng-click="closeEditItem(itemWeightAvrgForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>-->
+                                <!--</div>-->
+                            <!--</form>-->
                         </div>
                         <div ng-dblclick="editItem(item, $event,itemAssignedToForm)" class="col-lg-2">
-                            <div ng-if="!itemAssignedToForm.$visible" class="truncate-text" style="display: inline-block;" title="{{ getAssignedUsers(item.assignedTo) || '-' }}">
+                            <div ng-if="!itemAssignedToForm.$visible && !item.editDetails" class="truncate-text" style="display: inline-block;" title="{{ getAssignedUsers(item.assignedTo) || '-' }}">
                                 {{ getAssignedUsers(item.assignedTo) || '-' }}
                             </div>
                             <form name="itemAssignedToForm">
-                                <div ng-if="itemAssignedToForm.$visible" style="display: inline-block; width: 145px;">
+                                <div ng-if="itemAssignedToForm.$visible || item.editDetails" style="display: inline-block; width: 145px;">
                                     <select ng-model="item.assignedTo" ng-options="user for user in users" multiple="multiple" class="col-lg-10 form-control input-sm" style="width: 113px;">
                                         <option value="''">Not Assigned</option>
                                     </select>
@@ -109,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-footer">
+            <div ng-if="canEdit()" class="panel-footer">
                 <div>
                     <form name="newItemForm" class="form-inline">
 

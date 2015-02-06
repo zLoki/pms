@@ -30,8 +30,13 @@
         margin-bottom: 0;
         color: #2B669A;
     }
-    .toggle-icon {
-        margin-bottom: -12px;
+    .one-line {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 0;
+        min-width: 100%;
+        display: block;
     }
 </style>
 <div ng-init="init()" ng-controller="AcViewController">
@@ -62,7 +67,7 @@
 
     <div>
         <div style="width: 100%;">
-            <fieldset class="fieldset-section" style="width: 60%;">
+            <fieldset class="fieldset-section" style="width: 60%; float: left">
                 <legend class="group-legend">Description</legend>
                 <div style="margin: 10px;">{{ changeRequest.description || "Initial description was not specified yet." }}</div>
                 <div>
@@ -70,7 +75,7 @@
                     <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="changeRequest.description = description; description = null">Update</button>
                 </div>
             </fieldset>
-            <fieldset class="fieldset-section" style="width: 39%;">
+            <fieldset class="fieldset-section" style="width: 39%; float: right">
                 <legend class="group-legend">Attachments</legend>
                 <div>
                     <ul class="list-group">
@@ -78,7 +83,7 @@
                             CR does not have attached files.
                         </li>
                         <li class="list-group-item" ng-repeat="attachment in changeRequest.attachments">                |
-                            <span style="float: left; margin-right: 20px;">
+                            <span style="float: left; margin-right: 10px;">
                                 <button class="btn btn-xs btn-flat btn-flat-danger" title="Remove Attached File" ng-click="removeAttachments(item.id, clItemAttachment.id)">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </button>
@@ -86,7 +91,7 @@
                                     <i class="glyphicon glyphicon-download-alt"></i>
                                 </button>
                             </span>
-                            <span title="attachment.name">{{attachment.name}}</span>
+                            <span class="one-line" title="attachment.name">{{attachment.name}}</span>
                         </li>
                     </ul>
                     <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="changeRequest.description = description; description = null">Update</button>
@@ -149,7 +154,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-sm btn-primary" ng-click="updateCriteria(ac);$hide()">OK</button>
-                    <button type="button" class="btn btn-sm btn-default" ng-click="$hide();clBlockUI.stop()">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="$hide();mainBlockUI.stop()">Cancel</button>
                 </div>
             </form>
         </div>

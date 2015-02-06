@@ -23,12 +23,12 @@
                                         </div>
 
                                         <div ng-dblclick="editItem(changeRequest.priority, $event, priorityForm)" class="text-center col-lg-2">
-                                            <span ng-if="!priorityForm.$visible" class="label" ng-class="{'label-new': changeRequest.priority == 1,
+                                            <div ng-if="!priorityForm.$visible" class="label col-lg-6 col-lg-offset-3" ng-class="{'label-new': changeRequest.priority == 1,
                                             'label-in-analysis': changeRequest.priority == 2,
                                             'label-in-progress': changeRequest.priority == 3,
                                             'label-on-hold': changeRequest.priority == 4}">
                                                 {{ getPriorityName(changeRequest.priority) || 'Critical' }}
-                                            </span>
+                                            </div>
                                             <form name="priorityForm">
                                                 <div ng-if="priorityForm.$visible" style="display: inline-block; width: 145px;">
                                                     <select ng-model="changeRequest.priority" ng-options="priority.id as priority.name for priority in priorities" class="col-lg-10 form-control input-sm" style="width: 113px;">
@@ -40,13 +40,13 @@
                                         </div>
 
                                         <div ng-dblclick="editItem(changeRequest.status, $event, statusForm)" class="text-center col-lg-2">
-                                            <span ng-if="!statusForm.$visible" class="label" ng-class="{'label-new': changeRequest.status == 1,
+                                            <div ng-if="!statusForm.$visible" class="label col-lg-6 col-lg-offset-3" ng-class="{'label-new': changeRequest.status == 1,
                                                 'label-in-analysis': changeRequest.status == 2,
                                                 'label-in-progress': changeRequest.status == 3,
                                                 'label-on-hold': changeRequest.status == 4,
                                                 'label-complete': changeRequest.status == 5}" >
                                                 {{ getStatusName(changeRequest.status) || 'New' }}
-                                            </span>
+                                            </div>
                                             <form name="statusForm">
                                                 <div ng-if="statusForm.$visible" style="display: inline-block; width: 145px;">
                                                     <select ng-model="changeRequest.status" ng-options="status.id as status.name for status in statuses" class="col-lg-10 form-control input-sm" style="width: 113px;">
@@ -57,7 +57,17 @@
                                             </form>
                                         </div>
 
-                                        <div class="col-lg-1 text-center">{{ calculateEstimate(changeRequest) || '-' }}</div>
+                                        <div ng-if = "changeRequest.tasks.length == 1" ng-dblclick="editItem(changeRequest.tasks[0], $event, taskEstimateForm)" class="col-lg-1 text-center">
+                                            <div ng-if="!taskEstimateForm.$visible" >{{ changeRequest.tasks[0].estimate || '-' }}</div>
+                                            <form name="taskEstimateForm">
+                                                <div ng-if="taskEstimateForm.$visible" style="display: inline-block; width: 70px;">
+                                                    <input ng-model="changeRequest.tasks[0].estimate" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">
+                                                    <span ng-click="closeEditItem(taskEstimateForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div ng-if = "changeRequest.tasks.length > 1" class="col-lg-1 text-center">{{ calculateEstimate(changeRequest) || '-' }}</div>
                                         <div class="col-lg-1 text-center">{{ calculateEstimate(changeRequest) - calculateSpentTime(changeRequest) || '-' }}</div>
                                         <div class="col-lg-1 text-center">{{ calculateSpentTime(changeRequest) || '-' }}</div>
                                         <div class="col-lg-1 text-center">{{ changeRequest.tasks[0].heartbeat || '0' }}</div>
@@ -74,13 +84,13 @@
                                             {{ task.name || '-' }}
                                         </div>
                                         <div class="text-center col-lg-2">
-                                            <span class="label" ng-class="{'label-new': task.status == 1,
+                                            <div class="label col-lg-6  col-lg-offset-3" ng-class="{'label-new': task.status == 1,
                                                 'label-in-analysis': task.status == 2,
                                                 'label-in-progress': task.status == 3,
                                                 'label-on-hold': task.status == 4,
                                                 'label-complete': task.status == 5}">
                                                 {{ getStatusName(task.status) || 'New' }}
-                                            </span>
+                                            </div>
                                         </div>
 
                                         <div ng-dblclick="editItem(task, $event, taskEstimateForm)" class="col-lg-1 text-center">

@@ -2,7 +2,6 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams, Acce
     $scope.pageSetup = {
         viewType: 'unknown'
     };
-    console.log($scope.pageSetup)
 
     $scope.filters = [];
 

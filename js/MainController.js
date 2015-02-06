@@ -1,4 +1,7 @@
 MainApp.controller("MainController", function($scope, $state, $stateParams) {
+    $scope.pageSetup = {
+        viewType: 'unknown'
+    };
 
     $scope.main = {showBreadcrambs: false, currentBreadCrumbItem: null, breadCrumbItems: []};
 
@@ -21,9 +24,11 @@ MainApp.controller("MainController", function($scope, $state, $stateParams) {
         $scope.goToState(item.url);
     };
 
-    $scope.viewType = 'dev';
-
     $scope.goToState = function(state, $event) {
         $state.transitionTo(state, $stateParams);
+    };
+
+    $scope.isViewSelected = function(type) {
+        return $scope.pageSetup.viewType === type;
     };
 });

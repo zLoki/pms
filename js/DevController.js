@@ -1,4 +1,4 @@
-MainApp.controller("DevViewController", function($controller, $scope, AccessService) {
+MainApp.controller("DevViewController", function($controller, $scope, $filter, AccessService) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.pageSetup.viewType = 'dev';
@@ -35,8 +35,12 @@ MainApp.controller("DevViewController", function($controller, $scope, AccessServ
     $scope.crs = Constants.CR.list();
     $scope.tasks = [].concat(Constants.Task.getMultiRadioList());
 
-    $scope.trackProgress = function(statistics, log) {
+    $scope.trackProgress = function(task, log) {
         log["trackedBy"] = "AlexanderShe";
-        statistics.push(log);
+        if (!log.date) log.date = new Date().getTime();
+        //if (!log.date) log.date = $filter("date")(new Date(), "dd MMM yyyy");
+        task.remaining -= log.estimateRemaining ? log.estimateRemaining : 0;
+        task.spent += log.actValue ? log.actValue : log.actValue;
+        task.statistics.push(log);
     };
 });

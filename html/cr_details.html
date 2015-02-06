@@ -12,10 +12,11 @@
     <div class="" style="margin-bottom: 15px;">
         <div><strong>Attachments</strong> <span ng-click="attachFile()" style="cursor: pointer;" title="Attach new file">(<span style="color: #8896ff;">Attach</span>)</span></div>
         <div>
+            <div ng-if="!cr.attachments.length" style="color: #7c7c7c;">No attachments were uploaded yet</div>
             <div ng-repeat="attachment in cr.attachments">
-                <span style="color: #5d5d5d;">{{ attachment.name }}</span>
                 <button ng-click="downloadAttachment(attachment)" class="btn btn-xs glyphicon glyphicon-download-alt transparentButton" title="Download Attachment"></button>
                 <button ng-click="removeAttachment(attachment)" class="btn btn-xs glyphicon glyphicon-remove transparentButton" title="Remove Attachment"></button>
+                <span style="color: #5d5d5d;">{{ attachment.name }}</span>
             </div>
         </div>
     </div>
@@ -25,7 +26,7 @@
             <div class="panel-header" style="background-color: #eaeaea; padding: 4px;"><strong>Task List</strong></div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-lg-1" style="width: 30px;padding: 0px;"><strong>Action</strong></div>
+                    <div class="col-lg-1" style="width: 6%;padding: 0px;"><strong>Action</strong></div>
                     <div class="col-lg-5">
                         <strong>Name</strong>
                     </div>
@@ -48,9 +49,9 @@
                 <div style="max-height: 500px; overflow-x: hidden; overflow-y: auto;">
                     <div ng-if="!tasks.length" class="col-lg-12 text-center">No items were created</div>
                     <div ng-repeat="item in tasks" class="row">
-                        <div class="col-lg-1" style="width: 30px;">
-                            <button ng-if="canEdit()" ng-click="editTaskDetails(task)" class="btn btn-xs btn-flat" style="border: none; color: green; background-color: transparent;"></button>
-                            <button ng-if="canEdit()" ng-click="editTaskDetails(task)" class="glyphicon glyphicon-edit" style="border: none; color: green; background-color: transparent;"></button>
+                        <div class="col-lg-1" style="width: 6%;">
+                            <button ng-if="canEdit()" ng-click="editTaskDetails(task)" class="glyphicon glyphicon-edit"
+                                    style="border: none; color: green; background-color: transparent; font-size: 12px; color: #6b6bff;"></button>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemNameForm)" class="col-lg-5">
                             <div ng-if="!itemNameForm.$visible" ng-click="goToTask(item)" class="truncate-text" title="{{ item.name || '-' }}"
@@ -90,13 +91,14 @@
                             </form>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemWeightAvrgForm)" class="col-lg-1">
-                            <div ng-if="!itemWeightAvrgForm.$visible" style="display: inline-block;">{{ item.weighted_avg || '-' }}</div>
-                            <form name="itemWeightAvrgForm">
-                                <div ng-if="itemWeightAvrgForm.$visible" style="display: inline-block; width: 70px;">
-                                    <input ng-model="item.weighted_avg" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
-                                    <span ng-click="closeEditItem(itemWeightAvrgForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
-                                </div>
-                            </form>
+                            <div style="display: inline-block;">{{ (item.weighted_avg = calculateWeightAvarage(item)) || '-' }}</div>
+                            <!--<div ng-if="!itemWeightAvrgForm.$visible" style="display: inline-block;">{{ item.weighted_avg || '-' }}</div>-->
+                            <!--<form name="itemWeightAvrgForm">-->
+                                <!--<div ng-if="itemWeightAvrgForm.$visible" style="display: inline-block; width: 70px;">-->
+                                    <!--<input ng-model="item.weighted_avg" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">-->
+                                    <!--<span ng-click="closeEditItem(itemWeightAvrgForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>-->
+                                <!--</div>-->
+                            <!--</form>-->
                         </div>
                         <div ng-dblclick="editItem(item, $event,itemAssignedToForm)" class="col-lg-2">
                             <div ng-if="!itemAssignedToForm.$visible" class="truncate-text" style="display: inline-block;" title="{{ getAssignedUsers(item.assignedTo) || '-' }}">

@@ -40,18 +40,21 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row" style="border-bottom: solid 1px #ddd;">
-                <div class="col-lg-6"><strong>Task Description</strong></div>
+                <div class="col-lg-5"><strong>Task Description</strong></div>
                 <div class="col-lg-1 text-center"><strong>Status</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
                 <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
+                <div class="col-lg-1 text-center"><strong>Estimate remaining</strong></div>
                 <div class="col-lg-1 text-center"><strong>Spent</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast Start</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
             </div>
-
             <div ng-if="!tasks.length" class="col-lg-12">No tasks assigned</div>
             <div class="row" ng-repeat="task in tasks | orderBy:filters.orderBy track by task.id" style="float: left; width: 100%; margin: 10px 0;">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
+                    <span ng-if="canEdit()" data-task="task" data-placement="right" data-content="Test" data-container="body"
+                          bs-popover data-template="task.spent.form.html"
+                          class="glyphicon glyphicon-edit" style="font-size: 12px; color: #6b6bff; cursor: pointer;"></span>
                     <b>T-#{{ task.id }} </b>
                     <span ng-click="goToTask(task)" style="cursor: pointer;">{{ task.name || '-' }}</span>
                 </div>
@@ -63,7 +66,12 @@
                 <div class="text-center col-lg-1">{{ task.forecast || '-' }}</div>
                 <div class="text-center col-lg-1">{{ task.estimate || '-' }}</div>
                 <div class="text-center col-lg-1">
-                    <span data-task="task" data-placement="left" data-content="Test" bs-popover data-template="task.spent.form.html">
+                    <span>
+                        {{ task.remaining || '-' }}
+                    </span>
+                </div>
+                <div class="text-center col-lg-1">
+                    <span>
                         {{ task.spent || '-' }}
                     </span>
                 </div>
@@ -79,10 +87,11 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row" style="border-bottom: solid 1px #ddd;">
-                <div class="col-lg-6"><strong>CR/Task Title</strong></div>
+                <div class="col-lg-5"><strong>CR/Task Title</strong></div>
                 <div class="col-lg-1 text-center"><strong>Status</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
                 <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
+                <div class="col-lg-1 text-center"><strong>Estimate Remaining</strong></div>
                 <div class="col-lg-1 text-center"><strong>Spent</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast Start</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast End</strong></div>
@@ -91,7 +100,7 @@
             <div class="row" ng-repeat="cr in crs | orderBy:['name'] track by cr.id" style="margin: 10px 0;">
                 <div class="">
                     <!--<div class="text-right col-lg-1" style="padding-right: 27px;">{{ cr.id }}</div>-->
-                    <div ng-click="goToCr(cr)" class="col-lg-6 truncate-text"
+                    <div ng-click="goToCr(cr)" class="col-lg-5 truncate-text"
                          title="{{ cr.name }}"
                          style="cursor: pointer; display: inline-block; max-width: none; min-width: auto;">
                         <b>CR-#{{ cr.id }} </b>
@@ -112,7 +121,7 @@
                 <div class="">
                     <div  ng-repeat="task in cr.tasks | orderBy:filters.orderBy track by task.id" style="float: left; width: 100%; margin: 10px 0;">
                         <!--<div class="text-right col-lg-1">{{ task.id }}</div>-->
-                        <div ng-click="goToTask(task)" class="col-lg-6 truncate-text"
+                        <div ng-click="goToTask(task)" class="col-lg-5 truncate-text"
                              title="{{ task.name }}"
                              style="cursor: pointer; padding-left: 4%; display: inline-block; max-width: none; min-width: auto;">
                             <b>T-#{{ task.id }} </b>
@@ -123,11 +132,12 @@
                                         'label-in-progress': task.status == 3,
                                         'label-on-hold': task.status == 4,
                                         'label-complete': task.status == 5}" class="label text-center col-lg-1">{{ getStatusName(task.status) || 'New' }}</div>
-                        <div class="text-center col-lg-1">{{ task.forecast || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ task.estimate || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ task.spent || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ (task.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
-                        <div class="text-center col-lg-1">{{ (task.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
+                        <div class="text-center col-lg-1">{{ cr.forecast || '-' }}</div>
+                        <div class="col-lg-1 text-center"><strong>{{ calculateEstimate(cr) || '-' }}</strong></div>
+                        <div class="col-lg-1 text-center"><strong>{{ calculateEstimate(cr) - calculateSpentTime(cr) || '-' }}</strong></div>
+                        <div class="col-lg-1 text-center"><strong>{{ calculateSpentTime(cr) || '-' }}</strong></div>
+                        <div class="text-center col-lg-1">{{ (cr.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
+                        <div class="text-center col-lg-1">{{ (cr.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
                     </div>
                 </div>
         </div>
@@ -142,29 +152,36 @@
             <fieldset class="fieldset-section">
                 <legend class="group-legend">Statistics</legend>
                 <div class="col-lg-12" style="border-bottom: solid 1px #ddd; font-weight: bold; margin-bottom: 5px">
-                    <div class="col-lg-5"> Date </div>
-                    <div class="col-lg-5"> Track By </div>
+                    <div class="col-lg-4"> Date </div>
+                    <div class="col-lg-4"> Track By </div>
                     <div class="col-lg-2"> Spent Time </div>
+                    <div class="col-lg-2"> Actual Spent Time </div>
                 </div>
-                <div class="col-lg-12" ng-repeat="log in task.statistics">
-                    <div class="col-lg-5"> {{log.date}}</div>
-                    <div class="col-lg-5"> {{log.trackedBy}} </div>
-                    <div class="col-lg-2"> {{log.actValue}}h</div>
+                <div style="max-height: 200px; overflow-x: hidden; overflow-y: auto; width: 100%;">
+                    <div class="col-lg-12" ng-repeat="log in task.statistics | orderBy:'-date'">
+                        <div class="col-lg-4"> {{ log.date | date:'dd MMM yyyy' }}</div>
+                        <div class="col-lg-4"> {{ log.trackedBy }} </div>
+                        <div class="col-lg-2"> {{ log.estimateRemaining || '0' }}h</div>
+                        <div class="col-lg-2"> {{ log.actValue }}h</div>
+                    </div>
                 </div>
             </fieldset>
             <form name="itemCustomizationForm" style="margin-top: 10px">
                 <div class="form-group" ng-init="log={}">
                     <input type="hidden" ng-model="log.trackedBy" value="AlexanderShe">
-                    <input class="form-control input-xs" ng-model="log.actValue" style="width: 150px; display: inline-block;" type="number"/>
+                    <input class="form-control input-xs" ng-model="log.estimateRemaining" placeholder="Spent Time" style="width: 100px; display: inline-block;" type="number"/>
+                    <input class="form-control input-xs" ng-model="log.actValue" placeholder="Actual Spent Time" style="width: 100px; display: inline-block;" type="number"/>
                     <input bs-datepicker type="text" class="form-control input-xs" style="width: 150px; display: inline-block;"
-                                             ng-model="log.date" data-date-type="string"
-                                             date-format="dd/MM/yyyy"
+                                             ng-model="log.date" data-date-type="number"
+                                             date-format="dd MMM yyyy"
                                              show-weeks="false" show-button-bar="false"/>
-                    <span class="glyphicon glyphicon-calendar" style="float: right; margin-top: -23px; margin-right: 120px;"/>
-                    <button type="button" class="btn btn-sm btn-primary" style="display: inline-block;" ng-click="trackProgress(task.statistics, log); log = {}">Track Progress</button>
+                    <span class="glyphicon glyphicon-calendar" style="width: 10px;"/>
                 </div>
                 <div class="form-actions">
-                    <button type="button" class="btn btn-sm btn-default" ng-click="$hide();clBlockUI.stop()">Close</button>
+                    <div style="display: inline-block; width: 100%;">
+                        <button ng-click="trackProgress(task, log); log = {}" type="button" class="btn btn-sm btn-primary" style="float:left;">Track Progress</button>
+                        <button ng-click="$hide();clBlockUI.stop()" type="button" class="btn btn-sm btn-default" style="float:right;">Close</button>
+                    </div>
                 </div>
             </form>
         </div>

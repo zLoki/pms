@@ -281,14 +281,14 @@ var Constants = {
 
     Log: {
         FM_LOG: [
-            {date: "30/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
-            {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 5.9, estValue: 6},
-            {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 7.9, estValue: 8},
-            {date: "27/01/2015", trackedBy: "DmitryS", actValue: 9, estValue: 9},
-            {date: "27/01/2015", trackedBy: "VladimirSh", actValue: 8.5, estValue: 8.5},
-            {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 9, estValue: 9},
-            {date: "26/01/2015", trackedBy: "DmitryS", actValue: 8.2, estValue: 8.2},
-            {date: "26/11/2014", trackedBy: "VladimirSh", actValue: 5.9, estValue: 6}
+            {date: 1423124485225, trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
+            {date: 1423024485225, trackedBy: "AlexanderShe", actValue: 5.9, estValue: 6},
+            {date: 1422924485225, trackedBy: "AlexanderShe", actValue: 7.9, estValue: 8},
+            {date: 1422923485225, trackedBy: "DmitryS", actValue: 9, estValue: 9},
+            {date: 1422922485225, trackedBy: "VladimirSh", actValue: 8.5, estValue: 8.5},
+            {date: 1422911485225, trackedBy: "AlexanderShe", actValue: 9, estValue: 9},
+            {date: 1422910485225, trackedBy: "DmitryS", actValue: 8.2, estValue: 8.2},
+            {date: 1422909485225, trackedBy: "VladimirSh", actValue: 5.9, estValue: 6}
         ]
     }
 };

@@ -35,7 +35,7 @@ MainApp.controller("CrViewController", function($controller, $scope, $stateParam
     };
 
     $scope.removeAttachment = function(attachment) {
-        cr.attachments.splice(cr.attachments.indexOf(attachment), 1);
+        $scope.cr.attachments.splice($scope.cr.attachments.indexOf(attachment), 1);
     };
 
     $scope.addNewItem = function(newItem, newItemForm) {

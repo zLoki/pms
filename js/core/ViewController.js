@@ -97,7 +97,8 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams, Acce
 
         if (!log.estimateRemaining && !log.actValue) return;
 
-        log["trackedBy"] = "AlexanderShe";
+        var users = Constants.User.list();
+        log["trackedBy"] = users[Math.floor(Math.random() * users.length)];
         if (!log.date) log.date = new Date().getTime();
         //if (!log.date) log.date = $filter("date")(new Date(), "dd MMM yyyy");
         task.remaining -= log.estimateRemaining;

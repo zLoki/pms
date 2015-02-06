@@ -50,6 +50,10 @@
                 <div class="highlight underline">Status</div>
             </div>
             <div class="col-lg-2">
+                <div class="value">{{ changeRequest.priority.name || '-' }}</div>
+                <div class="highlight underline">Priority</div>
+            </div>
+            <div class="col-lg-2">
                 <div class="value">{{ 42 }}</div>
                 <div class="highlight underline">Estimation value</div>
             </div>
@@ -58,44 +62,96 @@
 
     <div>
         <div style="width: 100%;">
-            <fieldset class="fieldset-section" style="width: inherit;">
+            <fieldset class="fieldset-section" style="width: 60%;">
                 <legend class="group-legend">Description</legend>
-                <div style="margin: 10px;">{{ changeRequest.description || "Initial description wasn't specified yet." }}</div>
-                <div ng-if="!changeRequest.description">
-                    <textarea style="width: 98%; margin-left: 10px;"></textarea>
-                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;">Save</button>
+                <div style="margin: 10px;">{{ changeRequest.description || "Initial description was not specified yet." }}</div>
+                <div>
+                    <textarea style="width: 98%; margin-left: 10px;" ng-model="description"></textarea>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="changeRequest.description = description; description = null">Update</button>
+                </div>
+            </fieldset>
+            <fieldset class="fieldset-section" style="width: 39%;">
+                <legend class="group-legend">Attachments</legend>
+                <div>
+                    <ul class="list-group">
+                        <li class="list-group-item" style="text-align: center;" ng-if="!changeRequest.attachments.length">
+                            CR does not have attached files.
+                        </li>
+                        <li class="list-group-item" ng-repeat="attachment in changeRequest.attachments">                |
+                            <span style="float: left; margin-right: 20px;">
+                                <button class="btn btn-xs btn-flat btn-flat-danger" title="Remove Attached File" ng-click="removeAttachments(item.id, clItemAttachment.id)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                                <button class="btn btn-xs btn-flat btn-flat-primary" title="Download Attached File" ng-click="downloadAttachments(item.id, clItemAttachment.id)">
+                                    <i class="glyphicon glyphicon-download-alt"></i>
+                                </button>
+                            </span>
+                            <span title="attachment.name">{{attachment.name}}</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="changeRequest.description = description; description = null">Update</button>
                 </div>
             </fieldset>
         </div>
         <div style="width: 100%;">
-            <fieldset class="fieldset-section" style="width: inherit; background-color: #FFF;">
+            <fieldset class="fieldset-section" style="width: inherit; /*background-color: #FFF;*/">
                 <legend class="group-legend">Acceptance Criteria</legend>
                 <div class="panel-group" style="margin-top: 10px;" ng-model="panels.activePanel" bs-collapse>
-                    <div class="panel panel-default" ng-class="{'panel-success': ac.status.id == 2, 'panel-danger': ac.status.id == 3}" style="width: 98%; margin-left: 10px;" ng-repeat="ac in acList">
+                    <div class="panel panel-default" ng-class="{'panel-info': ac.status.id == 2, 'panel-danger': ac.status.id == 3}" style="width: 98%; margin-left: 10px;" ng-repeat="ac in acList">
                         <div class="panel-heading" style="background-image: none;">
                             <div style="display: inline-block; float: left;">
-                                <button class="btn btn-xs btn-flat btn-flat-primary"><span class="glyphicon glyphicon-cog"></span></button>
+                                <button class="btn btn-xs btn-flat btn-flat-primary" ng-click="initStatusUpdatePopup(ac)" data-template="ac.update.html" data-placement="right" data-content="Test" bs-popover><span class="glyphicon glyphicon-cog"></span></button>
                             </div>
                             <div style="display: inline-block; width: 95%; margin-left: 10px;">
                                 <span class="panel-title">{{ ac.name }}</span>
                             </div>
-                            <div style="color: #D99D9C; text-align: center;" ng-class="{'toggle-icon': ac.status.id == 3}" bs-collapse-toggle>
-                                <span ng-if="ac.status.id == 3" class="glyphicon glyphicon-chevron-down" style="cursor: pointer;"></span>
+                            <div ng-show="ac.comments.length" style="margin-bottom: -12px; text-align: center;" bs-collapse-toggle>
+                                <span class="glyphicon glyphicon-chevron-down" style="cursor: pointer;"></span>
                             </div>
                         </div>
                         <div class="panel-collapse" bs-collapse-target>
                             <div class="panel-body">
-                                {{ ac.description }}
+                                <fieldset style="border: 1px solid #dddddd; background-color: #FFF; margin-bottom: 10px;" ng-repeat="comment in ac.comments">
+                                    <legend class="group-legend">{{ comment.creator }}</legend>
+                                    <div style="padding: 5px 10px;">
+                                        <span><strong>Status: </strong>{{ comment.status }}</span><br>
+                                        <span>{{ comment.content }}</span>
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <textarea style="width: 98%; margin-left: 10px;"></textarea>
-                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;">Add Criteria</button>
+                    <textarea style="width: 98%; margin-left: 10px;" ng-model="defaultCriteria.name"></textarea>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="addCriteria()">Add Criteria</button>
                 </div>
             </fieldset>
         </div>
     </div>
 
 </div>
+
+<script id="ac.update.html" type="text/ng-template">
+    <div class="popover" tabindex="-1" ng-keypress="stopBlockUIonEscapeEvent($event, this)" ng-show="content" style="min-width: 400px; z-index: 99999;">
+        <div class="arrow"></div>
+        <h2 class="popover-title" ng-bind-html="title" ng-show="title" style="font-weight: bold"></h2>
+        <div class="popover-content">
+            <form name="itemCustomizationForm">
+                <div class="form-group" style="font-size: 13px;">
+                    <label style="color: #2B669A;">Status:</label>
+                    <select class="form-control input-xs" style="width: 250px;" ng-model="acDetails.status" ng-options="status as status.name for status in acStatuses">
+                    </select>
+                    <label style="color: #2B669A; margin-top: 10px;">Comment:</label>
+                    <textarea type="text" class="form-control" style="max-width: 354px" placeholder="Please enter comment here..."
+                              ng-model="acDetails.comment" required ng-maxlength="2000" >
+                    </textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-sm btn-primary" ng-click="updateCriteria(ac);$hide()">OK</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="$hide();clBlockUI.stop()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>

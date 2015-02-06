@@ -43,6 +43,10 @@ body {
     text-decoration: underline;
 }
 
+.transparentButton {
+    background-color: transparent;
+}
+
 .fieldset-section {
     padding: 10px;
     display: inline-block;

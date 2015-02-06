@@ -185,12 +185,11 @@ var Constants = {
 };
 
 Constants.CR = {
-    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.getMultiRadioList(), priority: 1},
-    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5, tasks: [Constants.Task.Task_26], priority: 2},
-    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.getChecklistBuilderList(), priority: 3},
-    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: [Constants.Task.Task_27], priority: 4},
-    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: [Constants.Task.Task_28], priority: 1},
-
+    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", description: "Possible to create checklist for each WI and not WP. Multiradio project having different scopes/technologies tracked.", attachments: [{id: 182, name: "Multiradio.xlsx"}, {id: 180, name: "CR_GDCPOR_BO_EP_CRONOS_CR011_CHECKLIST-ON-WI-LEVEL.doc"}], status: 3, tasks: Constants.Task.getMultiRadioList(), priority: 1},
+    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", description: null, attachments: [], status: 5, tasks: [Constants.Task.Task_26], priority: 2},
+    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", description: null, attachments: [], status: 5, tasks: Constants.Task.getChecklistBuilderList(), priority: 3},
+    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", description: null, attachments: [], status: 4, tasks: [Constants.Task.Task_27], priority: 4},
+    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", description: null, attachments: [], status: 3, tasks: [Constants.Task.Task_28], priority: 1},
     list: function() {
         return [this.MULTIRADIO, this.JAPAN_PLACEHOLDER, this.CHECKLIST_BUILDER, this.CHECKLIST_ITEM_ATTACHMENTS, this.PLANNING_TOOL];
     },

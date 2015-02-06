@@ -15,6 +15,22 @@ MainApp.controller("CrViewController", function($controller, $scope, $stateParam
         $scope.main.currentBreadCrumbItem = $scope.cr;
     }
 
+    $scope.editTaskDetails = function(task) {
+
+    };
+
+    $scope.attachFile = function() {
+        alert('Attach new file.')
+    };
+
+    $scope.downloadAttachment = function(attachment) {
+        alert('download file');
+    };
+
+    $scope.removeAttachment = function(attachment) {
+        cr.attachments.splice(cr.attachments.indexOf(attachment), 1);
+    };
+
     $scope.addNewItem = function(newItem, newItemForm) {
         newItemForm.committed = true;
         if (!newItemForm.$valid) {

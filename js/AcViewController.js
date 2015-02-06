@@ -1,16 +1,16 @@
 MainApp.controller("AcViewController", function($controller, $scope, $stateParams, blockUI) {
     $controller('ViewController', {$scope: $scope});
 
-    $scope.main.showBreadcrambs = false;
+    $scope.main.showBreadcrambs = true;
 
     $scope.changeRequest = Constants.CR.getById(parseInt($stateParams['crId']));
 
     $scope.tasks = $scope.changeRequest ? Constants.Task.getTasksByCrId($scope.changeRequest.id) : [];
 
-//    if ($scope.main.breadCrumbItems.indexOf($scope.cr) == -1) {
-//        $scope.main.breadCrumbItems.push($scope.cr);
-//        $scope.main.currentBreadCrumbItem = $scope.cr;
-//    }
+    if ($scope.main.breadCrumbItems.indexOf($scope.changeRequest) == -1) {
+        $scope.main.breadCrumbItems.push($scope.changeRequest);
+        $scope.main.currentBreadCrumbItem = $scope.changeRequest;
+    }
 
     $scope.mainBlockUI = blockUI.instances.get('mainBlockUI');
     $scope.acList = [];

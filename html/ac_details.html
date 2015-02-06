@@ -70,9 +70,11 @@
             <fieldset class="fieldset-section" style="width: 60%; float: left">
                 <legend class="group-legend">Description</legend>
                 <div style="margin: 10px;">{{ changeRequest.description || "Initial description was not specified yet." }}</div>
-                <div>
+                <button ng-show="!description" class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="description = changeRequest.description;">Update</button>
+                <div ng-show="description">
                     <textarea style="width: 98%; margin-left: 10px;" ng-model="description"></textarea>
-                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="changeRequest.description = description; description = null">Update</button>
+                    <button class="btn btn-sm btn-default" style="float: right; margin: 15px 8px" ng-click="description = null">Cancel</button>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 15px 0" ng-click="changeRequest.description = description; description = null">Save</button>
                 </div>
             </fieldset>
             <fieldset class="fieldset-section" style="width: 39%; float: right">
@@ -82,19 +84,19 @@
                         <li class="list-group-item" style="text-align: center;" ng-if="!changeRequest.attachments.length">
                             CR does not have attached files.
                         </li>
-                        <li class="list-group-item" ng-repeat="attachment in changeRequest.attachments">                |
-                            <span style="float: left; margin-right: 10px;">
+                        <li class="list-group-item" style="padding: 10px;" ng-repeat="attachment in changeRequest.attachments">
+                            <span class="one-line" style="display: inline-block;">
                                 <button class="btn btn-xs btn-flat btn-flat-danger" title="Remove Attached File" ng-click="removeAttachments(item.id, clItemAttachment.id)">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </button>
-                                <button class="btn btn-xs btn-flat btn-flat-primary" title="Download Attached File" ng-click="downloadAttachments(item.id, clItemAttachment.id)">
+                                <button class="btn btn-xs btn-flat btn-flat-primary" style="margin-right: 5px;" title="Download Attached File" ng-click="downloadAttachments(item.id, clItemAttachment.id)">
                                     <i class="glyphicon glyphicon-download-alt"></i>
-                                </button>
+                                </button>|
+                                <span title="{{attachment.name}}">{{attachment.name}}</span>
                             </span>
-                            <span class="one-line" title="attachment.name">{{attachment.name}}</span>
                         </li>
                     </ul>
-                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="changeRequest.description = description; description = null">Update</button>
+                    <button class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="">Upload</button>
                 </div>
             </fieldset>
         </div>

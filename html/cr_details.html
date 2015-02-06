@@ -52,7 +52,8 @@
                             <button ng-click="editTaskDetails(task)" class="glyphicon glyphicon-edit" style="border: none; color: green; background-color: transparent;"></button>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemNameForm)" class="col-lg-5">
-                            <div ng-if="!itemNameForm.$visible" ng-click="goToTask(item)" class="truncate-text" title="{{ item.name || '-' }}" style="display: inline-block; cursor: pointer;">{{ item.name || '-' }}</div>
+                            <div ng-if="!itemNameForm.$visible" ng-click="goToTask(item)" class="truncate-text" title="{{ item.name || '-' }}"
+                                 style="display: inline-block; cursor: pointer;">{{ item.name || '-' }}</div>
                             <form name="itemNameForm">
                                 <div ng-if="itemNameForm.$visible" style="display: inline-block; width: 100%;">
                                     <input ng-model="item.name" type="text" class="col-lg-10 form-control input-sm" style="width: 90%">

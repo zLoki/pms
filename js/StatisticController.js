@@ -26,5 +26,13 @@ MainApp.controller("StatisticViewController", function($controller, $scope) {
     $scope.statuses = Constants.Status.list();
     $scope.priorities = Constants.Priority.list();
 
-
+    $scope.labels = ["07 Jan", "12 Jan", "17 Jan", "22 Jan", "27 Jan", "1 Feb", "6Feb"];
+    $scope.series = ['Progress', 'Capacity'];
+    $scope.data = [
+        [350, 270, 240, 195, 155, 90, 45],
+        [350, 320, 240, 210, 160, 110, 50]
+    ];
+    $scope.onClick = function (points, evt) {
+        console.log(points, evt);
+    };
 });

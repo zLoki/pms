@@ -66,14 +66,10 @@
                 <div class="text-center col-lg-1">{{ task.forecast || '-' }}</div>
                 <div class="text-center col-lg-1">{{ task.estimate || '-' }}</div>
                 <div class="text-center col-lg-1">
-                    <span>
-                        {{ task.remaining || '-' }}
-                    </span>
+                    <span>{{ task.remaining || '-' }}</span>
                 </div>
                 <div class="text-center col-lg-1">
-                    <span>
-                        {{ task.spent || '-' }}
-                    </span>
+                    <span>{{ task.spent || '-' }}</span>
                 </div>
                 <div class="text-center col-lg-1">{{ (task.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
                 <div class="text-center col-lg-1">{{ (task.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
@@ -124,6 +120,9 @@
                         <div ng-click="goToTask(task)" class="col-lg-5 truncate-text"
                              title="{{ task.name }}"
                              style="cursor: pointer; padding-left: 4%; display: inline-block; max-width: none; min-width: auto;">
+                            <span ng-if="canEdit()" data-task="task" data-placement="right" data-content="Test" data-container="body"
+                                  bs-popover data-template="task.spent.form.html"
+                                  class="glyphicon glyphicon-edit" style="font-size: 12px; color: #6b6bff; cursor: pointer;"></span>
                             <b>T-#{{ task.id }} </b>
                             <span ng-click="goToTask(task)" style="cursor: pointer;">{{ task.name || '-' }}</span>
                         </div>

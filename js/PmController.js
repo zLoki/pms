@@ -1,12 +1,15 @@
-MainApp.controller("PmViewController", function($controller, $scope) {
+MainApp.controller("PmViewController", function($controller, $scope, AccessService) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.pageSetup.viewTyp = 'pm';
-    $scope.loggedUser = {
+
+    AccessService.updateCurrentUser({
         displayName: 'PM User',
         role: 3
-    };
-    
+    });
+
+    $scope.reloadBreadCrambs();
+
     for (var i = 0; i < $scope.main.breadCrumbItems.length; i++) {
         var obj = $scope.main.breadCrumbItems[i];
         if (obj.id == undefined) {

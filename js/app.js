@@ -66,3 +66,12 @@ MainApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'TaskViewController'
         });
 });
+
+MainApp.service("AccessService", function() {
+    var user = {
+        displayName: 'test',
+        role: 0
+    };
+    this.getCurrentUser = function() {return user;};
+    this.updateCurrentUser = function(newuser) {user = newuser;};
+});

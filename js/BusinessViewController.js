@@ -1,11 +1,14 @@
-MainApp.controller("BusinessViewController", function($controller, $scope) {
+MainApp.controller("BusinessViewController", function($controller, $scope, AccessService) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.pageSetup.viewType = 'business';
-    $scope.loggedUser = {
+
+    AccessService.updateCurrentUser({
         displayName: 'Business User',
         role: 1
-    };
+    });
+
+    $scope.reloadBreadCrambs();
 
     for (var i = 0; i < $scope.main.breadCrumbItems.length; i++) {
         var obj = $scope.main.breadCrumbItems[i];

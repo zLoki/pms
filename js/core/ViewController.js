@@ -1,9 +1,9 @@
-MainApp.controller("ViewController", function($scope, $state, $stateParams) {
-    $scope.pageSetup = {viewType: 'unknown'};
-    $scope.loggedUser = {
-        displayName: 'Business User',
-        role: 1
+MainApp.controller("ViewController", function($scope, $state, $stateParams, AccessService) {
+    $scope.pageSetup = {
+        viewType: 'unknown'
     };
+    console.log($scope.pageSetup)
+
     $scope.filters = [];
 
     $scope.users = Constants.User.list();
@@ -29,7 +29,7 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams) {
     };
 
     $scope.canEdit = function() {
-        return $scope.loggedUser.role != 1; //$scope.pageSetup.viewType != "business";
+        return AccessService.getCurrentUser().role != 1 &&  AccessService.getCurrentUser().role != 0;
     };
 
     $scope.updateItemProgress = function(item) {

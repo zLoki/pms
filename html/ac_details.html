@@ -181,7 +181,7 @@
             <div class="panel-header" style="background-color: #eaeaea; padding: 4px;"><strong>Task List</strong></div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-lg-1" style="width: 30px;padding: 0px;"><strong>Action</strong></div>
+                    <div class="col-lg-1" style="width: 6%;padding: 0px;"><strong>Action</strong></div>
                     <div class="col-lg-5">
                         <strong>Name</strong>
                     </div>
@@ -204,8 +204,7 @@
                 <div style="max-height: 500px; overflow-x: hidden; overflow-y: auto;">
                     <div ng-if="!tasks.length" class="col-lg-12 text-center">No items were created</div>
                     <div ng-repeat="item in tasks" class="row">
-                        <div class="col-lg-1" style="width: 30px;">
-                            <button ng-if="canEdit()" ng-click="editTaskDetails(task)" class="btn btn-xs btn-flat" style="border: none; color: green; background-color: transparent;"></button>
+                        <div class="col-lg-1" style="width: 6%;">
                             <button ng-if="canEdit()" ng-click="editTaskDetails(task)" class="glyphicon glyphicon-edit" style="border: none; color: green; background-color: transparent;"></button>
                         </div>
                         <div ng-dblclick="editItem(item, $event, itemNameForm)" class="col-lg-5">

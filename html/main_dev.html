@@ -109,8 +109,9 @@
                                     'label-on-hold': cr.status == 4,
                                     'label-complete': cr.status == 5}" class="label text-center col-lg-1">{{ getStatusName(cr.status) || 'New' }}</div>
                     <div class="text-center col-lg-1">{{ cr.forecast || '-' }}</div>
-                    <div class="text-center col-lg-1">{{ cr.estimate || '-' }}</div>
-                    <div class="text-center col-lg-1">{{ cr.spent || '-' }}</div>
+                    <div class="col-lg-1 text-center"><strong>{{ calculateEstimate(cr) || '-' }}</strong></div>
+                    <div class="col-lg-1 text-center"><strong>{{ calculateEstimate(cr) - calculateSpentTime(cr) || '-' }}</strong></div>
+                    <div class="col-lg-1 text-center"><strong>{{ calculateSpentTime(cr) || '-' }}</strong></div>
                     <div class="text-center col-lg-1">{{ (cr.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
                     <div class="text-center col-lg-1">{{ (cr.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
                 </div>
@@ -132,9 +133,9 @@
                                         'label-on-hold': task.status == 4,
                                         'label-complete': task.status == 5}" class="label text-center col-lg-1">{{ getStatusName(task.status) || 'New' }}</div>
                         <div class="text-center col-lg-1">{{ cr.forecast || '-' }}</div>
-                        <div class="col-lg-1 text-center"><strong>{{ calculateEstimate(cr) || '-' }}</strong></div>
-                        <div class="col-lg-1 text-center"><strong>{{ calculateEstimate(cr) - calculateSpentTime(cr) || '-' }}</strong></div>
-                        <div class="col-lg-1 text-center"><strong>{{ calculateSpentTime(cr) || '-' }}</strong></div>
+                        <div class="col-lg-1 text-center">{{ task.estimate || '-' }}</div>
+                        <div class="col-lg-1 text-center">{{ task.remaining || '-' }}</div>
+                        <div class="col-lg-1 text-center">{{ task.spent || '-' }}</div>
                         <div class="text-center col-lg-1">{{ (cr.forecastStart | date:'dd MMM yyyy') || '-' }}</div>
                         <div class="text-center col-lg-1">{{ (cr.forecastEnd | date:'dd MMM yyyy') || '-' }}</div>
                     </div>

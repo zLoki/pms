@@ -1,5 +1,12 @@
-MainApp.controller("AcViewController", function($controller, $scope, $stateParams, blockUI) {
+MainApp.controller("AcViewController", function($controller, $scope, $stateParams, blockUI, AccessService) {
     $controller('ViewController', {$scope: $scope});
+
+    $scope.pageSetup.viewType = 'pm';
+
+    AccessService.updateCurrentUser({
+        displayName: 'PM User',
+        role: 3
+    });
 
     $scope.main.showBreadcrambs = true;
 

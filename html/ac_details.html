@@ -67,7 +67,7 @@
 
     <div>
         <div style="width: 100%;">
-            <fieldset class="fieldset-section" style="width: 60%; float: left">
+            <fieldset class="fieldset-section" style="width: 60%; float: left; min-height: 157px;">
                 <legend class="group-legend">Description</legend>
                 <div style="margin: 10px;">{{ changeRequest.description || "Initial description was not specified yet." }}</div>
                 <button ng-show="!description" class="btn btn-sm btn-primary" style="float: right; margin: 8px 15px;" ng-click="description = changeRequest.description;">Update</button>
@@ -77,7 +77,7 @@
                     <button class="btn btn-sm btn-primary" style="float: right; margin: 15px 0" ng-click="changeRequest.description = description; description = null">Save</button>
                 </div>
             </fieldset>
-            <fieldset class="fieldset-section" style="width: 39%; float: right">
+            <fieldset class="fieldset-section" style="width: 39%; float: right; min-height: 157px;">
                 <legend class="group-legend">Attachments</legend>
                 <div>
                     <ul class="list-group">
@@ -89,7 +89,7 @@
                                 <button class="btn btn-xs btn-flat btn-flat-danger" title="Remove Attached File" ng-click="removeAttachments(item.id, clItemAttachment.id)">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </button>
-                                <button class="btn btn-xs btn-flat btn-flat-primary" style="margin-right: 5px;" title="Download Attached File" ng-click="downloadAttachments(item.id, clItemAttachment.id)">
+                                <button class="btn btn-xs btn-flat btn-flat-primary" style="margin-right: 5px;" title="Download Attached File" ng-click="downloadAttachment()">
                                     <i class="glyphicon glyphicon-download-alt"></i>
                                 </button>|
                                 <span title="{{attachment.name}}">{{attachment.name}}</span>
@@ -121,7 +121,7 @@
                                 <fieldset style="border: 1px solid #dddddd; background-color: #FFF; margin-bottom: 10px;" ng-repeat="comment in ac.comments">
                                     <legend class="group-legend">{{ comment.creator }}</legend>
                                     <div style="padding: 5px 10px;">
-                                        <span><strong>Status: </strong>{{ comment.status }}</span><br>
+                                        <span><strong>Status: </strong>{{ comment.status.name }}</span><br>
                                         <span>{{ comment.content }}</span>
                                     </div>
                                 </fieldset>

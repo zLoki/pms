@@ -6,9 +6,12 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
     $scope.init = function() {
         $scope.initParams();
         angular.forEach(Constants.AcceptanceCriteria.list(), function(ac) {
-            ac.comments = [];
             ac.status = Constants.ACStatus.getStatus(ac.status);
-            if (ac.status.id == Constants.ACStatus.FAILED.id) ac.comments.push($scope.defaultComment);
+            if (ac.comments.length) {
+                angular.forEach(ac.comments, function(item) {
+                    item.status = Constants.ACStatus.getStatus(item.status);
+                })
+            }
             $scope.acList.push(ac);
         });
     };
@@ -26,12 +29,6 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
             name: null,
             status: Constants.ACStatus.NEW,
             comments: []
-        };
-
-        $scope.defaultComment = {
-            status: Constants.ACStatus.FAILED.name,
-            content: "While file is locked within File Manager, delete button is still showing on Checklist as disabled, when it should be hidden totally.",
-            creator: "Padmashree Chougule"
         };
     };
 
@@ -51,5 +48,9 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
         $scope.mainBlockUI.stop();
         ac.status = $scope.acDetails.status;
         ac.comments.push({status: $scope.acDetails.status.name, content: $scope.acDetails.comment, creator: "John Smith"});
+    };
+
+    $scope.downloadAttachment = function() {
+        alert('Nice try!');
     }
 });

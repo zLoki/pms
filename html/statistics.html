@@ -14,10 +14,20 @@
 </div>
 
 <div class="row" style="margin-bottom: 20px;">
+    <div ng-if="!main.showBreadcrambs">
+        <div class="bread-crumb ng-scope" ng-if="main.showBreadcrambs">
+            <ul >
+                <li class="bread-crumb-line-height">
+                    <a class="bread-crumb-link ng-binding ng-scope" href="#/pm">Main View</a>
+                    <span class="glyphicon glyphicon-chevron-right" style="color: #A3A3A3"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="panel  panel-default">
         <div class="panel-body">
             <canvas id="line" class="chart chart-line" data="data"
-                    labels="labels" legend="true" series="series" colours="colours"
+                    labels="labels" legend="true" series="series"
                     click="onClick">
             </canvas>
         </div>

@@ -84,10 +84,8 @@
 
                                 <div class="" ng-if = "changeRequest.tasks.length > 1" ng-repeat="task in changeRequest.tasks track by task.id" style="margin-bottom: 20px; margin-top: 20px">
                                     <div class="row">
-                                        <div class="" style="padding-left: 3%; float: left; position: absolute">
+                                        <div class="col-lg-6" style="padding-left: 3%">
                                             <b>T-#{{ changeRequest.id }} </b>
-                                        </div>
-                                        <div class="col-lg-6" style="padding-left: 8%">
                                             <span ng-click="goToTask(task)" style="cursor: pointer;">{{ task.name || '-' }}</span>
                                         </div>
                                         <div class="text-center col-lg-2">
@@ -120,14 +118,13 @@
                                             </form>
                                         </div>
 
-                                        <div ng-dblclick="editItem(task, $event, taskSpentTimeForm)" class="col-lg-1 text-center">
-                                            <div ng-if="!taskSpentTimeForm.$visible || task.status == 5" >{{ task.spent || '-' }}</div>
-                                            <form name="taskSpentTimeForm">
-                                                <div ng-if="taskSpentTimeForm.$visible && task.status != 5" style="display: inline-block; width: 70px;">
-                                                    <input ng-model="task.spent" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
-                                                    <span ng-click="closeEditItem(taskSpentTimeForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
-                                                </div>
-                                            </form>
+                                        <div class="col-lg-1 text-center"
+                                             data-task1="task"
+                                             data-placement="left"
+                                             data-content="Test"
+                                             bs-popover
+                                             data-template="task.spent.form.html" >
+                                            {{ task.spent || '-' }}
                                         </div>
 
                                         <div ng-class="{'red-heartbeat': calculateHeartBeatByTask(task) > 0,
@@ -145,50 +142,27 @@
     </div>
 </div>
 
-
-
-
-<!--<div class="panel panel-success">-->
-    <!--<div class="panel-heading">-->
-        <!--Select project properties:-->
-        <!--<div style="display: inline-block;">-->
-            <!--<select class="form-control input-xs" style="width: 250px; padding-left: 10px;" ng-options="project.id as project.name for project in filterProjects" ng-model="filter.project">-->
-                <!--<option value="">Select Project</option>-->
-            <!--</select>-->
-        <!--</div>-->
-        <!--<div style="display: inline-block;">-->
-            <!--<select class="form-control input-xs" style="width: 250px; padding-left: 10px;" ng-options="release.id as release.name for release in filterReleases" ng-model="filter.release">-->
-                <!--<option value="">Select Release</option>-->
-            <!--</select>-->
-        <!--</div>-->
-        <!--<button type="button" class="btn btn-sm btn-success" ng-click="init()">Apply</button>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--<table class="table" style="margin-bottom: 0;">-->
-            <!--<thead>-->
-            <!--<tr>-->
-                <!--<th>#</th>-->
-                <!--<th>First Name</th>-->
-                <!--<th>Last Name</th>-->
-                <!--<th>Username</th>-->
-            <!--</tr>-->
-            <!--</thead>-->
-        <!--</table>-->
-        <!--<div class="panel-group" ng-model="panels.activePanel" bs-collapse>-->
-            <!--<div class="panel panel-default" style="margin-top: 0;" ng-repeat="changeRequest in changeRequests track by changeRequest.id">-->
-                <!--<div class="panel-heading">-->
-                    <!--<h4 class="panel-title">-->
-                        <!--<a bs-collapse-toggle>-->
-                            <!--{{ changeRequest.name }}-->
-                        <!--</a>-->
-                    <!--</h4>-->
-                <!--</div>-->
-                <!--<div ng-if="changeRequest.tasks" class="panel-collapse" bs-collapse-target>-->
-                    <!--<div class="panel-body" ng-repeat="task in changeRequest.tasks track by task.id">-->
-                        <!--{{ task.name }}-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<script id="task.spent.form.html" type="text/ng-template">
+    <div class="popover" tabindex="-1" ng-keypress="stopBlockUIonEscapeEvent($event, this)" ng-show="content" style="min-width: 450px; z-index: 99999;">
+        <div class="arrow"></div>
+        <h2 class="popover-title" ng-bind-html="title" ng-show="title" style="font-weight: bold"></h2>
+        <div class="popover-content">
+            <fieldset class="fieldset-section">
+                <legend class="group-legend">Statistics</legend>
+                <div class="col-lg-12" style="border-bottom: solid 1px #ddd; font-weight: bold; margin-bottom: 5px">
+                    <div class="col-lg-5"> Date </div>
+                    <div class="col-lg-5"> Track By </div>
+                    <div class="col-lg-2"> Spent Time </div>
+                </div>
+                <div class="col-lg-12" ng-repeat="log in task.statistics">
+                    <div class="col-lg-5"> {{log.date}}</div>
+                    <div class="col-lg-5"> {{log.trackedBy}} </div>
+                    <div class="col-lg-2"> {{log.actValue}}h</div>
+                </div>
+            </fieldset>
+            <div class="form-actions pull-right" style="margin-bottom: 10px">
+                <button type="button" class="btn btn-sm btn-default" ng-click="$hide();clBlockUI.stop()">Close</button>
+            </div>
+        </div>
+    </div>
+</script>

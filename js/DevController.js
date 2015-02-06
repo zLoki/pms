@@ -34,4 +34,9 @@ MainApp.controller("DevViewController", function($controller, $scope, AccessServ
 
     $scope.crs = Constants.CR.list();
     $scope.tasks = [].concat(Constants.Task.getMultiRadioList());
+
+    $scope.trackProgress = function(statistics, log) {
+        log["trackedBy"] = "AlexanderShe";
+        statistics.push(log);
+    };
 });

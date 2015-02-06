@@ -1,7 +1,8 @@
 MainApp.controller("StatisticViewController", function($controller, $scope) {
     $controller('ViewController', {$scope: $scope});
 
-    $scope.main.showBreadcrambs = false;
+    $scope.main.showBreadcrambs = true;
+
     $scope.currentProject = Constants.Project.VENUS;
     $scope.currentRelease = Constants.Release.Z3;
     $scope.currentSprint = "Sprint 2";
@@ -9,7 +10,11 @@ MainApp.controller("StatisticViewController", function($controller, $scope) {
 
     $scope.filterProjects = Constants.Project.list();
     $scope.filterReleases = [Constants.Release.Z1, Constants.Release.Z2, Constants.Release.Z3];
-
+    $scope.currentRelease.url = 'pms.statistic';
+    if ($scope.main.breadCrumbItems.indexOf($scope.currentRelease) == -1) {
+        $scope.main.breadCrumbItems.push($scope.currentRelease);
+        $scope.main.currentBreadCrumbItem = $scope.currentRelease;
+    }
     $scope.init = function() {
         $scope.changeRequests = Constants.CR.list();
     };

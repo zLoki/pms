@@ -23,4 +23,23 @@ MainApp.controller("PmViewController", function($controller, $scope) {
         var priority = Constants.Priority.getPriority(id);
         return priority ? priority.name : null;
     };
+
+    $scope.statuses = Constants.Status.list();
+    $scope.priorities = Constants.Priority.list();
+
+    $scope.calculateEstimate = function (changeRequest) {
+        var result = 0;
+        for (var i = 0; i < changeRequest.tasks.length; i++) {
+            result += parseFloat(changeRequest.tasks[i].estimate) ;
+        }
+        return result;
+    };
+
+    $scope.calculateSpentTime = function (changeRequest) {
+        var result = 0;
+        for (var i = 0; i < changeRequest.tasks.length; i++) {
+            result += parseFloat(changeRequest.tasks[i].spent) ;
+        }
+        return result;
+    };
 });

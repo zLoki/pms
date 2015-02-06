@@ -54,19 +54,19 @@ var Constants = {
     },
 
     Task: {
-        Task_11: {id: 569.1, name: "GUI Design and Logic", status: 1, priority: 1, estimate: 72, spent: 0, forecastStart: null, forecastEnd: null},
-        Task_12: {id: 569.2, name: "Adjust functionality to customize CL items and AFs per CL (not WP)", status: 2, priority: 1, estimate: 32, spent: 0, forecastStart: null, forecastEnd: null},
-        Task_13: {id: 569.3, name: "Adjust functionality to create single CL and proper phases", status: 3, priority: 1, estimate: 16, spent: 12, forecastStart: null, forecastEnd: null},
-        Task_14: {id: 569.4, name: "Mass Update Functionality", status: 4, priority: 1, estimate: 8, spent: 0, forecastStart: null, forecastEnd: null},
-        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", status: 5, priority: 1, estimate: 40, spent: 40, forecastStart: 1422121947759, forecastEnd: 1423161947759},
-        Task_25: {id: 628.1, name: "Phase Details Tab", status: 5, priority: 1, estimate: 56, spent: 56, forecastStart: null, forecastEnd: null},
-        Task_24: {id: 628.2, name: "Phase Details to Activity Assignment Tab", status: 5, priority: 1, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
-        Task_22: {id: 628.3, name: "PA Customization per project", status: 5, priority: 1, estimate: 16, spent: 16, forecastStart: null, forecastEnd: null},
-        Task_21: {id: 628.4, name: "PA Checklist Customization", status: 5, priority: 1, estimate: 112, spent: 112, forecastStart: null, forecastEnd: null},
-        Task_23: {id: 628.5, name: "Iteration Dashboard changes", status: 5, priority: 1, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
-        Task_26: {id: 590.1, name: "Placeholder for Japan team", status: 5, priority: 1, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
-        Task_27: {id: 630.1, name: "Checklist Item attachments managing with File Manager", status: 4, priority: 1, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
-        Task_28: {id: 631.1, name: "Planning tool to be captured", status: 3, priority: 1, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
+        Task_11: {id: 569.1, name: "GUI Design and Logic", status: 1, estimate: 72, spent: 0, forecastStart: null, forecastEnd: null},
+        Task_12: {id: 569.2, name: "Adjust functionality to customize CL items and AFs per CL (not WP)", status: 2, priority: 2, estimate: 32, spent: 0, forecastStart: null, forecastEnd: null},
+        Task_13: {id: 569.3, name: "Adjust functionality to create single CL and proper phases", status: 3, estimate: 16, spent: 12, forecastStart: null, forecastEnd: null},
+        Task_14: {id: 569.4, name: "Mass Update Functionality", status: 4, priority: 3, estimate: 8, spent: 0, forecastStart: null, forecastEnd: null},
+        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", status: 5, estimate: 40, spent: 40, forecastStart: 1422121947759, forecastEnd: 1423161947759},
+        Task_25: {id: 628.1, name: "Phase Details Tab", status: 5, priority: 2, estimate: 56, spent: 56, forecastStart: null, forecastEnd: null},
+        Task_24: {id: 628.2, name: "Phase Details to Activity Assignment Tab", status: 5, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
+        Task_22: {id: 628.3, name: "PA Customization per project", status: 5, estimate: 16, spent: 16, forecastStart: null, forecastEnd: null},
+        Task_21: {id: 628.4, name: "PA Checklist Customization", status: 5, estimate: 112, spent: 112, forecastStart: null, forecastEnd: null},
+        Task_23: {id: 628.5, name: "Iteration Dashboard changes", status: 5, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
+        Task_26: {id: 590.1, name: "Placeholder for Japan team", status: 5, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
+        Task_27: {id: 630.1, name: "Checklist Item attachments managing with File Manager", status: 4, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
+        Task_28: {id: 631.1, name: "Planning tool to be captured", status: 3, estimate: 32, spent: 32, forecastStart: null, forecastEnd: null},
 
         getMultiRadioList: function() {
             return [this.Task_11, this.Task_12, this.Task_13, this.Task_14, this.Task_15];
@@ -116,9 +116,11 @@ var Constants = {
         HIGH: {id: 2, name: "High"},
         MEDIUM: {id: 3, name: "Medium"},
         LOW: {id: 4, name: "Low"},
-
+        list: function() {
+            return [this.CRITICAL, this.HIGH, this.MEDIUM, this.LOW];
+        },
         getPriority: function(id) {
-            var list = [this.CRITICAL, this.HIGH, this.MEDIUM, this.LOW];
+            var list = this.list();
             for (var i = 0; i < list.length; i++) {
                 var obj = list[i];
                 if (obj.id === id) return obj;
@@ -183,11 +185,12 @@ var Constants = {
 };
 
 Constants.CR = {
-    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 3, tasks: Constants.Task.getMultiRadioList()},
-    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5, tasks: [Constants.Task.Task_26]},
-    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 5, tasks: Constants.Task.getChecklistBuilderList()},
-    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: [Constants.Task.Task_27]},
-    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: [Constants.Task.Task_28]},
+    MULTIRADIO: {id: 569, name: "Checklist by each Work Item", status: 5, tasks: Constants.Task.getMultiRadioList(), priority: 1},
+    JAPAN_PLACEHOLDER: {id: 590, name: "Placeholder for Japan team", status: 5, tasks: [Constants.Task.Task_26], priority: 2},
+    CHECKLIST_BUILDER: {id: 628, name: "Checklist Builder", status: 3, tasks: Constants.Task.getChecklistBuilderList(), priority: 3},
+    CHECKLIST_ITEM_ATTACHMENTS: {id: 630, name: "Checklist Item attachments managing with File Manager", status: 4, tasks: [Constants.Task.Task_27], priority: 4},
+    PLANNING_TOOL: {id: 631, name: "Planning tool to be captured", status: 3, tasks: [Constants.Task.Task_28], priority: 1},
+
     list: function() {
         return [this.MULTIRADIO, this.JAPAN_PLACEHOLDER, this.CHECKLIST_BUILDER, this.CHECKLIST_ITEM_ATTACHMENTS, this.PLANNING_TOOL];
     },

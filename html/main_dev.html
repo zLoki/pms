@@ -52,7 +52,7 @@
                     <div ng-if="!tasks.length" class="col-lg-12">No tasks assigned</div>
                     <div ng-repeat="task in tasks | orderBy:filters.orderBy track by task.id" style="float: left; width: 100%;">
                         <div class="text-right col-lg-1">{{ task.id }}</div>
-                        <div ng-click="goToTask(task)" class="col-lg-5 truncate-text"
+                        <div ng-click="goToTask(task)" class="col-lg-4 truncate-text"
                              title="{{ task.name }}"
                              style="cursor: pointer; display: inline-block; max-width: none; min-width: auto;">{{ task.name }}</div>
                         <div ng-class="{'label-new': task.status == 1,
@@ -78,7 +78,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-1 text-right"><strong>#</strong></div>
-                <div class="col-lg-4"><strong>CR Title</strong></div>
+                <div class="col-lg-4"><strong>CR/Task Title</strong></div>
                 <div class="col-lg-1 text-center"><strong>Status</strong></div>
                 <div class="col-lg-1 text-center"><strong>Forecast</strong></div>
                 <div class="col-lg-1 text-center"><strong>Estimate</strong></div>
@@ -90,7 +90,7 @@
                     <div ng-repeat="cr in crs | orderBy:['name'] track by cr.id">
                         <div class="col-lg-12">
                             <div class="text-right col-lg-1">{{ cr.id }}</div>
-                            <div ng-click="goToCr(cr)" class="col-lg-5 truncate-text"
+                            <div ng-click="goToCr(cr)" class="col-lg-4 truncate-text"
                                  title="{{ cr.name }}"
                                  style="cursor: pointer; display: inline-block; max-width: none; min-width: auto;">
                                 <strong ng-if="cr.tasks.length">{{ cr.name }}</strong>
@@ -110,7 +110,7 @@
                         <div class="col-lg-12">
                             <div ng-repeat="task in cr.tasks | orderBy:filters.orderBy track by task.id" style="float: left; width: 100%;">
                                 <div class="text-right col-lg-1">{{ task.id }}</div>
-                                <div ng-click="goToTask(task)" class="col-lg-5 truncate-text"
+                                <div ng-click="goToTask(task)" class="col-lg-4 truncate-text"
                                      title="{{ task.name }}"
                                      style="cursor: pointer; padding-left: 4%; display: inline-block; max-width: none; min-width: auto;">{{ task.name }}</div>
                                 <div ng-class="{'label-new': task.status == 1,

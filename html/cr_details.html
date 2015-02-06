@@ -2,41 +2,55 @@
 
 </style>
 <div>
-    <div class="bs-callout bs-callout-info">
+    <div class="bs-callout bs-callout-info" style="margin-bottom: 15px;">
         <strong>{{ cr.name }}</strong> CR details.
     </div>
+    <div class="" style="margin-bottom: 15px;">
+        <div><strong>Description</strong></div>
+        <textarea ng-model="cr.description" class="form-control" style="max-width: 700px; max-height: 75px; min-width: 700px; min-height: 75px;"></textarea>
+    </div>
+    <div class="" style="margin-bottom: 15px;">
+        <div><strong>Attachments</strong> <span ng-click="attachFile()" style="cursor: pointer;" title="Attach new file">(<span style="color: #8896ff;">Attach</span>)</span></div>
+        <div>
+            <div ng-repeat="attachment in cr.attachments">
+                <span style="color: #5d5d5d;">{{ attachment.name }}</span>
+                <button ng-click="downloadAttachment(attachment)" class="btn btn-xs glyphicon glyphicon-download-alt transparentButton" title="Download Attachment"></button>
+                <button ng-click="removeAttachment(attachment)" class="btn btn-xs glyphicon glyphicon-remove transparentButton" title="Remove Attachment"></button>
+            </div>
+        </div>
+    </div>
+    <hr />
     <div>
         <div class="panel">
+            <div class="panel-header" style="background-color: #eaeaea; padding: 4px;"><strong>Task List</strong></div>
             <div class="panel-body">
                 <div class="row">
-                    <!--<div class="col-lg-1" style="width: 30px;padding: 0px;">Action</div>-->
+                    <div class="col-lg-1" style="width: 30px;padding: 0px;"><strong>Action</strong></div>
                     <div class="col-lg-5">
-                        <span>Name</span>
+                        <strong>Name</strong>
                     </div>
                     <div class="col-lg-1">
-                        <span>Min (h)</span>
+                        <strong>Min (h)</strong>
                     </div>
                     <div class="col-lg-1">
-                        <span>Max (h)</span>
+                        <strong>Max (h)</strong>
                     </div>
                     <div class="col-lg-1">
-                        <span>Likely (h)</span>
+                        <strong>Likely (h)</strong>
                     </div>
                     <div class="col-lg-1">
-                        <span>Weighted Avrg. (h)</span>
+                        <strong>Weighted Avrg. (h)</strong>
                     </div>
                     <div class="col-lg-2">
-                        <span>Assigned To</span>
+                        <strong>Assigned To</strong>
                     </div>
                 </div>
                 <div style="max-height: 500px; overflow-x: hidden; overflow-y: auto;">
                     <div ng-if="!tasks.length" class="col-lg-12 text-center">No items were created</div>
                     <div ng-repeat="item in tasks" class="row">
-                        <!--<div class="col-lg-1" style="width: 30px;">-->
-                            <!--<button ng-click="updateItemProgress(item)" class="btn btn-xs btn-flat btn-flat-success" style="border: none;">-->
-                                <!--<span ng-class="{'glyphicon-check green': item.isCompleted, 'glyphicon-unchecked': !item.isCompleted}" class="glyphicon"></span>-->
-                            <!--</button>-->
-                        <!--</div>-->
+                        <div class="col-lg-1" style="width: 30px;">
+                            <button ng-click="editTaskDetails(task)" class="glyphicon glyphicon-edit" style="border: none; color: green; background-color: transparent;"></button>
+                        </div>
                         <div ng-dblclick="editItem(item, $event, itemNameForm)" class="col-lg-5">
                             <div ng-if="!itemNameForm.$visible" ng-click="goToTask(item)" class="truncate-text" title="{{ item.name || '-' }}" style="display: inline-block; cursor: pointer;">{{ item.name || '-' }}</div>
                             <form name="itemNameForm">

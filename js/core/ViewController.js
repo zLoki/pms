@@ -33,6 +33,7 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams) {
     };
 
     $scope.updateItemProgress = function(item) {
+        if (!$scope.canEdit()) return;
         item.isCompleted = !item.isCompleted;
     };
 

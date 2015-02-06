@@ -1,11 +1,14 @@
-MainApp.controller("DevViewController", function($controller, $scope) {
+MainApp.controller("DevViewController", function($controller, $scope, AccessService) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.pageSetup.viewType = 'dev';
-    $scope.loggedUser = {
+
+    AccessService.updateCurrentUser({
         displayName: 'Developer User',
         role: 2
-    };
+    });
+
+    $scope.reloadBreadCrambs();
 
     for (var i = 0; i < $scope.main.breadCrumbItems.length; i++) {
         var obj = $scope.main.breadCrumbItems[i];

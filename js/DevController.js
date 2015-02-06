@@ -35,12 +35,4 @@ MainApp.controller("DevViewController", function($controller, $scope, $filter, A
     $scope.crs = Constants.CR.list();
     $scope.tasks = [].concat(Constants.Task.getMultiRadioList());
 
-    $scope.trackProgress = function(task, log) {
-        log["trackedBy"] = "AlexanderShe";
-        if (!log.date) log.date = new Date().getTime();
-        //if (!log.date) log.date = $filter("date")(new Date(), "dd MMM yyyy");
-        task.remaining -= log.estimateRemaining ? log.estimateRemaining : 0;
-        task.spent += log.actValue ? log.actValue : log.actValue;
-        task.statistics.push(log);
-    };
 });

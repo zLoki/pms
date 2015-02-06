@@ -90,4 +90,18 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams, Acce
     $scope.calculateHeartBeatByTask = function(task) {
         return (task.remaining +  task.spent) - task.estimate;
     };
+
+    $scope.trackProgress = function(task, log) {
+        log.estimateRemaining = log.estimateRemaining ? log.estimateRemaining : 0;
+        log.actValue = log.actValue ? log.actValue :0;
+
+        if (!log.estimateRemaining && !log.actValue) return;
+
+        log["trackedBy"] = "AlexanderShe";
+        if (!log.date) log.date = new Date().getTime();
+        //if (!log.date) log.date = $filter("date")(new Date(), "dd MMM yyyy");
+        task.remaining -= log.estimateRemaining;
+        task.spent += log.actValue;
+        task.statistics.push(angular.copy(log));
+    };
 });

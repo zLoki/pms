@@ -1,4 +1,4 @@
-var MainApp = angular.module('MainApp', ["chart.js", 'ui.router', 'mgcrea.ngStrap']);
+var MainApp = angular.module('MainApp', ["chart.js", 'ui.router', 'mgcrea.ngStrap', 'blockUI']);
 
 MainApp.run(function($rootScope, $state, $stateParams, $location, $q) {
 

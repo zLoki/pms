@@ -1,4 +1,4 @@
-MainApp.controller("AcViewController", function($controller, $scope, $stateParams) {
+MainApp.controller("AcViewController", function($controller, $scope, $stateParams, blockUI) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.main.showBreadcrambs = false;
@@ -14,6 +14,7 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
     };
 
     $scope.initParams = function() {
+        $scope.mainBlockUI = blockUI.instances.get('mainBlockUI');
         $scope.changeRequest = Constants.CR.getById(parseInt($stateParams['crId']));
         $scope.changeRequest.status = Constants.Status.getStatus($scope.changeRequest.status);
         $scope.changeRequest.priority = Constants.Priority.getPriority($scope.changeRequest.priority);
@@ -35,6 +36,7 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
     };
 
     $scope.initStatusUpdatePopup = function (ac) {
+        $scope.mainBlockUI.start();
         $scope.acDetails = {criteria: ac, status: ac.status, comment: null};
     };
 
@@ -46,6 +48,7 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
     };
 
     $scope.updateCriteria = function(ac) {
+        $scope.mainBlockUI.stop();
         ac.status = $scope.acDetails.status;
         ac.comments.push({status: $scope.acDetails.status.name, content: $scope.acDetails.comment, creator: "John Smith"});
     }

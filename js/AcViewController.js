@@ -26,6 +26,8 @@ MainApp.controller("AcViewController", function($controller, $scope, $stateParam
     $scope.init = function() {
         $scope.changeRequest.status = Constants.Status.getStatus($scope.changeRequest.status);
         $scope.changeRequest.priority = Constants.Priority.getPriority($scope.changeRequest.priority);
+        if ($scope.changeRequest.id !== 630) return;
+
         angular.forEach(Constants.AcceptanceCriteria.list(), function(ac) {
             ac.status = Constants.ACStatus.getStatus(ac.status);
             if (ac.comments.length) {

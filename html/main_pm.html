@@ -18,20 +18,23 @@
                                 <div style="padding-bottom: 10px; padding-top: 10px;">
                                     <div class="row">
                                         <div class="col-lg-4">
+                                            <span ng-if="calculateHeartBeatByCr(changeRequest) != 0" class="glyphicon glyphicon-warning-sign" style="color: #cdd28f;"></span>
                                             <b>CR-#{{ changeRequest.id }} </b>
-                                            <span ng-click="goToAc(changeRequest)" style="cursor: pointer;">{{ changeRequest.name || '-' }}</span>
+                                            <span ng-click="goToCr(changeRequest)" style="cursor: pointer;">{{ changeRequest.name || '-' }}</span>
                                         </div>
 
                                         <div ng-dblclick="editItem(changeRequest.priority, $event, priorityForm)" class="text-center col-lg-2">
-                                            <div ng-if="!priorityForm.$visible" class="label col-lg-6 col-lg-offset-3" ng-class="{'label-new': changeRequest.priority == 1,
-                                            'label-in-analysis': changeRequest.priority == 2,
-                                            'label-in-progress': changeRequest.priority == 3,
-                                            'label-on-hold': changeRequest.priority == 4}">
+                                            <div ng-if="!priorityForm.$visible" class="label col-lg-6 col-lg-offset-3"
+                                                 ng-class="{'label-new': changeRequest.priority == 1,
+                                                            'label-in-analysis': changeRequest.priority == 2,
+                                                            'label-in-progress': changeRequest.priority == 3,
+                                                            'label-on-hold': changeRequest.priority == 4}">
                                                 {{ getPriorityName(changeRequest.priority) || 'Critical' }}
                                             </div>
                                             <form name="priorityForm">
                                                 <div ng-if="priorityForm.$visible" style="display: inline-block; width: 145px;">
-                                                    <select ng-model="changeRequest.priority" ng-options="priority.id as priority.name for priority in priorities" class="col-lg-10 form-control input-sm" style="width: 113px;">
+                                                    <select ng-model="changeRequest.priority" ng-options="priority.id as priority.name for priority in priorities"
+                                                            class="col-lg-10 form-control input-sm" style="width: 113px;">
                                                         <option value="''">Not Selected</option>
                                                     </select>
                                                     <span ng-click="closeEditItem(priorityForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
@@ -49,7 +52,8 @@
                                             </div>
                                             <form name="statusForm">
                                                 <div ng-if="statusForm.$visible" style="display: inline-block; width: 145px;">
-                                                    <select ng-model="changeRequest.status" ng-options="status.id as status.name for status in statuses" class="col-lg-10 form-control input-sm" style="width: 113px;">
+                                                    <select ng-model="changeRequest.status" ng-options="status.id as status.name for status in statuses"
+                                                            class="col-lg-10 form-control input-sm" style="width: 113px;">
                                                         <option value="''">Not Selected</option>
                                                     </select>
                                                     <span ng-click="closeEditItem(statusForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
@@ -58,10 +62,10 @@
                                         </div>
 
                                         <div ng-if = "changeRequest.tasks.length == 1" ng-dblclick="editItem(changeRequest.tasks[0], $event, taskEstimateForm)" class="col-lg-1 text-center">
-                                            <div ng-if="!taskEstimateForm.$visible" >{{ changeRequest.tasks[0].estimate || '-' }}</div>
+                                            <div ng-if="!taskEstimateForm.$visible">{{ changeRequest.tasks[0].estimate || '-' }}</div>
                                             <form name="taskEstimateForm">
                                                 <div ng-if="taskEstimateForm.$visible" style="display: inline-block; width: 70px;">
-                                                    <input ng-model="changeRequest.tasks[0].estimate" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">
+                                                    <input ng-model="changeRequest.tasks[0].estimate" type="text" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
                                                     <span ng-click="closeEditItem(taskEstimateForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
                                                 </div>
                                             </form>
@@ -70,7 +74,10 @@
                                         <div ng-if = "changeRequest.tasks.length > 1" class="col-lg-1 text-center">{{ calculateEstimate(changeRequest) || '-' }}</div>
                                         <div class="col-lg-1 text-center">{{ calculateEstimate(changeRequest) - calculateSpentTime(changeRequest) || '-' }}</div>
                                         <div class="col-lg-1 text-center">{{ calculateSpentTime(changeRequest) || '-' }}</div>
-                                        <div class="col-lg-1 text-center">{{ changeRequest.tasks[0].heartbeat || '0' }}</div>
+                                        <div ng-class="{'red-heartbeat': calculateHeartBeatByCr(changeRequest) > 0,
+                                                        'green-heartbeat': calculateHeartBeatByCr(changeRequest) < 0,
+                                                        'blue-heartbeat': calculateHeartBeatByCr(changeRequest) == 0}"
+                                             class="col-lg-1 text-center">{{ calculateHeartBeatByCr(changeRequest) || '0' }}</div>
                                     </div>
                                     <div ng-if = "changeRequest.tasks.length > 1" class="col-lg-12" style="border-bottom: solid 1px #ddd; margin-top: 15px;"></div>
                                 </div>
@@ -81,7 +88,7 @@
                                             <b>T-#{{ changeRequest.id }} </b>
                                         </div>
                                         <div class="col-lg-6" style="padding-left: 8%">
-                                            {{ task.name || '-' }}
+                                            <span ng-click="goToTask(task)" style="cursor: pointer;">{{ task.name || '-' }}</span>
                                         </div>
                                         <div class="text-center col-lg-2">
                                             <div class="label col-lg-6  col-lg-offset-3" ng-class="{'label-new': task.status == 1,
@@ -94,18 +101,39 @@
                                         </div>
 
                                         <div ng-dblclick="editItem(task, $event, taskEstimateForm)" class="col-lg-1 text-center">
-                                            <div ng-if="!taskEstimateForm.$visible" >{{ task.estimate || '-' }}</div>
+                                            <div ng-if="!taskEstimateForm.$visible || task.status == 5" >{{ task.estimate || '-' }}</div>
                                             <form name="taskEstimateForm">
-                                                <div ng-if="taskEstimateForm.$visible" style="display: inline-block; width: 70px;">
-                                                    <input ng-model="task.estimate" type="text" class="col-lg-10 form-control input-sm" style="width: 40px;">
+                                                <div ng-if="taskEstimateForm.$visible && task.status != 5" style="display: inline-block; width: 70px;">
+                                                    <input ng-model="task.estimate" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
                                                     <span ng-click="closeEditItem(taskEstimateForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
                                                 </div>
                                             </form>
                                         </div>
 
-                                        <div class="col-lg-1 text-center">{{ task.estimate - task.spent || '-' }}</div>
-                                        <div class="col-lg-1 text-center">{{ task.spent || '-' }}</div>
-                                        <div class="col-lg-1 text-center">{{ ((task.estimate - task.spent) +  task.spent) - task.estimate || '0' }}</div>
+                                        <div ng-dblclick="editItem(task, $event, taskEstimateRemainigForm)" class="col-lg-1 text-center">
+                                            <div ng-if="!taskEstimateRemainigForm.$visible || task.status == 5" >{{ task.remaining || '-' }}</div>
+                                            <form name="taskEstimateRemainigForm">
+                                                <div ng-if="taskEstimateRemainigForm.$visible && task.status != 5" style="display: inline-block; width: 70px;">
+                                                    <input ng-model="task.remaining" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
+                                                    <span ng-click="closeEditItem(taskEstimateRemainigForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div ng-dblclick="editItem(task, $event, taskSpentTimeForm)" class="col-lg-1 text-center">
+                                            <div ng-if="!taskSpentTimeForm.$visible || task.status == 5" >{{ task.spent || '-' }}</div>
+                                            <form name="taskSpentTimeForm">
+                                                <div ng-if="taskSpentTimeForm.$visible && task.status != 5" style="display: inline-block; width: 70px;">
+                                                    <input ng-model="task.spent" type="number" class="col-lg-10 form-control input-sm editable-field" style="width: 40px;">
+                                                    <span ng-click="closeEditItem(taskSpentTimeForm)" class="glyphicon glyphicon-remove transparentButton col-lg-1"></span>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div ng-class="{'red-heartbeat': calculateHeartBeatByTask(task) > 0,
+                                                        'green-heartbeat': calculateHeartBeatByTask(task) < 0,
+                                                        'blue-heartbeat': calculateHeartBeatByTask(task) == 0}"
+                                             class="col-lg-1 text-center">{{ calculateHeartBeatByTask(task) || '0' }}</div>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,13 @@
 MainApp.controller("PmViewController", function($controller, $scope) {
     $controller('ViewController', {$scope: $scope});
 
+    for (var i = 0; i < $scope.main.breadCrumbItems.length; i++) {
+        var obj = $scope.main.breadCrumbItems[i];
+        if (obj.id == undefined) {
+            obj.url = 'pms.pm';
+        }
+    }
+
     $scope.main.showBreadcrambs = false;
     //$scope.main.currentBreadCrumbItem = null;
     //$scope.main.breadCrumbItems = [];
@@ -27,19 +34,5 @@ MainApp.controller("PmViewController", function($controller, $scope) {
     $scope.statuses = Constants.Status.list();
     $scope.priorities = Constants.Priority.list();
 
-    $scope.calculateEstimate = function (changeRequest) {
-        var result = 0;
-        for (var i = 0; i < changeRequest.tasks.length; i++) {
-            result += parseFloat(changeRequest.tasks[i].estimate) ;
-        }
-        return result;
-    };
 
-    $scope.calculateSpentTime = function (changeRequest) {
-        var result = 0;
-        for (var i = 0; i < changeRequest.tasks.length; i++) {
-            result += parseFloat(changeRequest.tasks[i].spent) ;
-        }
-        return result;
-    };
 });

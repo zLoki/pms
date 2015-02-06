@@ -1,6 +1,11 @@
 body {
     /*font-size: 12px;*/
 }
+
+input[type=number].editable-field {
+    padding: 2px;
+}
+
 .bread-crumb {
     /*border-top:  1px solid #DCDCDC;*/
     /*border-left:  1px solid #DCDCDC;*/
@@ -45,6 +50,16 @@ body {
 
 .transparentButton {
     background-color: transparent;
+}
+
+.red-heartbeat {
+    background-color: #f4c2b9;
+}
+.blue-heartbeat {
+    background-color: #c4cbfa;
+}
+.green-heartbeat {
+    background-color: #9cf1b6;
 }
 
 .fieldset-section {

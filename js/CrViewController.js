@@ -1,4 +1,4 @@
-MainApp.controller("CrViewController", function($controller, $scope, $stateParams) {
+MainApp.controller("CrViewController", function($controller, $scope, $stateParams, $http, $httpBackend) {
     $controller('ViewController', {$scope: $scope});
 
     $scope.main.showBreadcrambs = true;
@@ -20,7 +20,14 @@ MainApp.controller("CrViewController", function($controller, $scope, $stateParam
     };
 
     $scope.attachFile = function() {
-        alert('Attach new file.')
+        alert('Attach new file.');
+        console.log($httpBackend);
+        //$httpBackend.when("GET", "/api/attach").respond([{}, {}, {}]);
+        //$httpBackend.expectGET('/attach');
+        //$httpBackend.flush();
+        //$http.get('/api/attach').success(function(data, status, headers) {
+        //    console.log(data);
+        //});
     };
 
     $scope.downloadAttachment = function(attachment) {

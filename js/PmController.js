@@ -1,6 +1,12 @@
 MainApp.controller("PmViewController", function($controller, $scope) {
     $controller('ViewController', {$scope: $scope});
 
+    $scope.pageSetup.viewTyp = 'pm';
+    $scope.loggedUser = {
+        displayName: 'PM User',
+        role: 3
+    };
+    
     for (var i = 0; i < $scope.main.breadCrumbItems.length; i++) {
         var obj = $scope.main.breadCrumbItems[i];
         if (obj.id == undefined) {

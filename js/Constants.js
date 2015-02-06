@@ -33,13 +33,13 @@ var Constants = {
     },
 
     Item: {
-        Item_11: {id: 11, taskId: 569.1, name: "Create migration to create folders for opportunity phases", description: "", min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
-        Item_12: {id: 12, taskId: 569.1, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
-        Item_13: {id: 13, taskId: 569.1, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
-        Item_14: {id: 14, taskId: 569.1, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
-        Item_15: {id: 15, taskId: 569.1, name: "Check File Manager to work with new Opportunity folders structure", description: "", min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS"]},
-        Item_16: {id: 16, taskId: 628.2, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS", "VladimirSh"]},
-        Item_17: {id: 17, taskId: 628.5, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["VladimirSh"]},
+        Item_11: {id: 11, taskId: 569.1, name: "Create migration to create folders for opportunity phases", description: "", comment: null, min: 4, max: 8, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
+        Item_12: {id: 12, taskId: 569.1, name: "Create migration to move Checklist items folders to corresponding Opportunity phase", description: "", comment: null, min: 8, max: 24, likely: 16, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
+        Item_13: {id: 13, taskId: 569.1, name: "Update Opportunity creation functionality to create Opportunity phases folders", description: "", comment: null, min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe"]},
+        Item_14: {id: 14, taskId: 569.1, name: "Update Checklist item creation functionality to create folder for current checklist item", description: "", comment: null, min: 4, max: 6, likely: 5, weighted_avg: null, isCompleted: false, assignedTo: ["AlexanderShe", "VladimirSh"]},
+        Item_15: {id: 15, taskId: 569.1, name: "Check File Manager to work with new Opportunity folders structure", description: "", comment: null, min: 2, max: 4, likely: 4, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS"]},
+        Item_16: {id: 16, taskId: 628.2, name: "Disable Checklist item attached file deletion, locked on File Manager", description: "", comment: null, min: 3, max: 6, likely: 6, weighted_avg: null, isCompleted: false, assignedTo: ["DmitryS", "VladimirSh"]},
+        Item_17: {id: 17, taskId: 628.5, name: "Non-functional (Testing, Code review, Demo preparation)", description: "", comment: null, min: 6, max: 12, likely: 8, weighted_avg: null, isCompleted: false, assignedTo: ["VladimirSh"]},
 
         ClItemAttachmentsTaskItemsList: [this.Item_11, this.Item_12, this.Item_13, this.Item_14, this.Item_15, this.Item_16, this.Item_17],
         getItemsByTaskId: function(taskId) {
@@ -54,7 +54,7 @@ var Constants = {
     },
 
     Task: {
-        Task_11: {id: 569.1, name: "GUI Design and Logic", status: 1, estimate: 72, remaining: 72, spent: 0, forecastStart: null, forecastEnd: null, statistics: [
+        Task_11: {id: 569.1, name: "GUI Design and Logic", description: null, status: 1, estimate: 72, remaining: 72, spent: 0, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -63,7 +63,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_12: {id: 569.2, name: "Adjust functionality to customize CL items and AFs per CL (not WP)", status: 2, priority: 2, estimate: 32, remaining: 30, spent: 5, forecastStart: null, forecastEnd: null, statistics: [
+        Task_12: {id: 569.2, name: "Adjust functionality to customize CL items and AFs per CL (not WP)", description: null, status: 2, priority: 2, estimate: 32, remaining: 30, spent: 5, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -72,7 +72,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_13: {id: 569.3, name: "Adjust functionality to create single CL and proper phases", status: 3, estimate: 16, remaining: 4, spent: 12, forecastStart: null, forecastEnd: null, statistics: [
+        Task_13: {id: 569.3, name: "Adjust functionality to create single CL and proper phases", description: null, status: 3, estimate: 16, remaining: 4, spent: 12, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -81,7 +81,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_14: {id: 569.4, name: "Mass Update Functionality", status: 4, priority: 3, estimate: 8, remaining: 8, spent: 0, forecastStart: null, forecastEnd: null,statistics: [
+        Task_14: {id: 569.4, name: "Mass Update Functionality", description: null, status: 4, priority: 3, estimate: 8, remaining: 8, spent: 0, forecastStart: null, forecastEnd: null,statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -90,7 +90,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", status: 5, estimate: 40, remaining: 0, spent: 40, forecastStart: 1422121947759, forecastEnd: 1423161947759, statistics: [
+        Task_15: {id: 569.5, name: "Checklist dependencies on administration page", description: null, status: 5, estimate: 40, remaining: 0, spent: 40, forecastStart: 1422121947759, forecastEnd: 1423161947759, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -99,7 +99,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_25: {id: 628.1, name: "Phase Details Tab", status: 5, priority: 2, estimate: 56, remaining: 0, spent: 56, forecastStart: null, forecastEnd: null, statistics: [
+        Task_25: {id: 628.1, name: "Phase Details Tab", description: null, status: 5, priority: 2, estimate: 56, remaining: 0, spent: 56, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -108,7 +108,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_24: {id: 628.2, name: "Phase Details to Activity Assignment Tab", status: 5, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
+        Task_24: {id: 628.2, name: "Phase Details to Activity Assignment Tab", description: null, status: 5, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -117,7 +117,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_22: {id: 628.3, name: "PA Customization per project", status: 5, estimate: 16, remaining: 0, spent: 16, forecastStart: null, forecastEnd: null, statistics: [
+        Task_22: {id: 628.3, name: "PA Customization per project", description: null, status: 5, estimate: 16, remaining: 0, spent: 16, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -126,7 +126,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_21: {id: 628.4, name: "PA Checklist Customization", status: 5, estimate: 112, remaining: 0, spent: 112, forecastStart: null, forecastEnd: null, statistics: [
+        Task_21: {id: 628.4, name: "PA Checklist Customization", description: null, status: 5, estimate: 112, remaining: 0, spent: 112, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -135,7 +135,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_23: {id: 628.5, name: "Iteration Dashboard changes", status: 5, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
+        Task_23: {id: 628.5, name: "Iteration Dashboard changes", description: null, status: 5, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -144,7 +144,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_26: {id: 590.1, name: "Placeholder for Japan team", status: 5, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
+        Task_26: {id: 590.1, name: "Placeholder for Japan team", description: null, status: 5, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -153,7 +153,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_27: {id: 630.1, name: "Checklist Item attachments managing with File Manager", status: 4, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
+        Task_27: {id: 630.1, name: "Checklist Item attachments managing with File Manager", description: null, status: 4, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
@@ -162,7 +162,7 @@ var Constants = {
             {date: "29/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "29/01/2015", trackedBy: "DmitryS", actValue: 6.6, estValue: 6.6}
         ]},
-        Task_28: {id: 631.1, name: "Planning tool to be captured", status: 3, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
+        Task_28: {id: 631.1, name: "Planning tool to be captured", description: null, status: 3, estimate: 32, remaining: 0, spent: 32, forecastStart: null, forecastEnd: null, statistics: [
             {date: "25/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "26/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},
             {date: "27/01/2015", trackedBy: "AlexanderShe", actValue: 6.6, estValue: 6.6},

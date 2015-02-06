@@ -15,6 +15,22 @@ MainApp.controller("TaskViewController", function($controller, $scope, $statePar
 
     $scope.checklists = [{name: 'test CL', items: Constants.Item.getItemsByTaskId($scope.task.id)}];
 
+    $scope.editItemDetails = function(item) {
+        item.editDetails = true;
+    };
+
+    $scope.closeEditItemDetails = function(item, forms) {
+        item.editDetails = false;
+
+        for (var i = 0; i < forms.length; i++) {
+            $scope.closeEditItem(forms[i]);
+        }
+    };
+
+    $scope.removeItem = function(item) {
+
+    };
+
     $scope.addNewItem = function(checklist, newItem, newItemForm) {
         newItemForm.committed = true;
         if (!newItemForm.$valid) {

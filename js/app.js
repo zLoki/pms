@@ -40,6 +40,11 @@ MainApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "html/main_pm.html",
             controller: 'PmViewController'
         })
+        .state('pms.business', {
+            url: "/business",
+            templateUrl: "html/main_pm.html",
+            controller: 'BusinessViewController'
+        })
         .state('pms.statistic', {
             url: "/statistic",
             templateUrl: "html/statistics.html",

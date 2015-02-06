@@ -1,4 +1,9 @@
 MainApp.controller("ViewController", function($scope, $state, $stateParams) {
+    $scope.pageSetup = {viewType: 'unknown'};
+    $scope.loggedUser = {
+        displayName: 'Business User',
+        role: 1
+    };
     $scope.filters = [];
 
     $scope.users = Constants.User.list();
@@ -23,12 +28,17 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams) {
         return assignedTo.join(", ");
     };
 
+    $scope.canEdit = function() {
+        return $scope.loggedUser.role != 1; //$scope.pageSetup.viewType != "business";
+    };
+
     $scope.updateItemProgress = function(item) {
         item.isCompleted = !item.isCompleted;
     };
 
     $scope.editItem = function(item, $event, $form) {
-        $event.stopPropagation();
+        if (!$scope.canEdit()) return;
+        if ($event && angular.isFunction($event)) $event.stopPropagation();
         $form.$visible = true;
     };
 
@@ -42,6 +52,10 @@ MainApp.controller("ViewController", function($scope, $state, $stateParams) {
             if (obj.name === item.name) return true;
         }
         return false;
+    };
+
+    $scope.calculateWeightAvarage = function(item) {
+        return Math.round((item.min + item.max + 4*item.likely)/6.1);
     };
 
     $scope.calculateEstimate = function(changeRequest) {
